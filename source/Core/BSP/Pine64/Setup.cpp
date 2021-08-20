@@ -36,7 +36,8 @@ void hardware_init() {
   setup_timers();
   // Watchdog
   setup_iwdg();
-
+  // ELIC
+  eclic_priority_group_set(ECLIC_PRIGROUP_LEVEL0_PRIO4);
   // uart for debugging
   setup_uart();
   /* enable TIMER1 - PWM control timing*/
@@ -102,8 +103,8 @@ void setup_gpio() {
 
   // Remap PB4 away from JTAG NJRST
   gpio_pin_remap_config(GPIO_SWJ_NONJTRST_REMAP, ENABLE);
-
-  // TODO - rest of pins as floating
+  // FUSB interrupt
+  gpio_init(FUSB302_IRQ_GPIO_Port, GPIO_MODE_IPU, GPIO_OSPEED_50MHZ, FUSB302_IRQ_Pin);
 }
 void setup_dma() {
   // Setup DMA for ADC0
@@ -160,7 +161,7 @@ void setup_adc() {
   /* config ADC clock */
   rcu_adc_clock_config(RCU_CKADC_CKAPB2_DIV16);
   // Run in normal parallel + inserted parallel
-  adc_mode_config(ADC0, ADC_DAUL_REGULAL_PARALLEL_INSERTED_PARALLEL);
+  adc_mode_config(ADC_DAUL_REGULAL_PARALLEL_INSERTED_PARALLEL);
   adc_special_function_config(ADC0, ADC_CONTINUOUS_MODE, ENABLE);
   adc_special_function_config(ADC0, ADC_SCAN_MODE, ENABLE);
   adc_special_function_config(ADC1, ADC_CONTINUOUS_MODE, ENABLE);
@@ -302,13 +303,10 @@ void setup_iwdg() {
 }
 
 void setupFUSBIRQ() {
-  // Setup IRQ for USB-PD
-  gpio_init(FUSB302_IRQ_GPIO_Port, GPIO_MODE_IPU, GPIO_OSPEED_2MHZ, FUSB302_IRQ_Pin);
-  eclic_irq_enable(EXTI5_9_IRQn, 1, 1);
-  /* connect key EXTI line to key GPIO pin */
+  eclic_global_interrupt_enable();
+  eclic_irq_enable(EXTI5_9_IRQn, 15, 0);
   gpio_exti_source_select(GPIO_PORT_SOURCE_GPIOB, GPIO_PIN_SOURCE_5);
 
   /* configure key EXTI line */
   exti_init(EXTI_5, EXTI_INTERRUPT, EXTI_TRIG_FALLING);
-  exti_interrupt_flag_clear(EXTI_5);
 }

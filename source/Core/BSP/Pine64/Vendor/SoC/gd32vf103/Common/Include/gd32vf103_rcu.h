@@ -2,11 +2,12 @@
     \file    gd32vf103_rcu.h
     \brief   definitions for the RCU
 
-    \version 2019-6-5, V1.0.0, firmware for GD32VF103
+    \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -36,7 +37,10 @@ OF SUCH DAMAGE.
 #define GD32VF103_RCU_H
 
 #include "gd32vf103.h"
-
+/* define clock source */
+#define SEL_IRC8M ((uint16_t)0U)
+#define SEL_HXTAL ((uint16_t)1U)
+#define SEL_PLL   ((uint16_t)2U)
 /* RCU definitions */
 #define RCU RCU_BASE
 
@@ -227,46 +231,6 @@ OF SUCH DAMAGE.
 #define RCU_DSV_DSLPVS BITS(0, 1) /*!< deep-sleep mode voltage select */
 
 /* constants definitions */
-/* define value of high speed crystal oscillator (HXTAL) in Hz */
-#if !defined HXTAL_VALUE
-#define HXTAL_VALUE     ((uint32_t)8000000) /*!< value of the external oscillator in Hz */
-#define HXTAL_VALUE_25M HXTAL_VALUE
-#endif /* high speed crystal oscillator value */
-
-/* define startup timeout value of high speed crystal oscillator (HXTAL) */
-#if !defined(HXTAL_STARTUP_TIMEOUT)
-#define HXTAL_STARTUP_TIMEOUT ((uint16_t)0xFFFF)
-#endif /* high speed crystal oscillator startup timeout */
-
-/* define value of internal 8MHz RC oscillator (IRC8M) in Hz */
-#if !defined(IRC8M_VALUE)
-#define IRC8M_VALUE ((uint32_t)8000000)
-#endif /* internal 8MHz RC oscillator value */
-
-/* define startup timeout value of internal 8MHz RC oscillator (IRC8M) */
-#if !defined(IRC8M_STARTUP_TIMEOUT)
-#define IRC8M_STARTUP_TIMEOUT ((uint16_t)0x0500)
-#endif /* internal 8MHz RC oscillator startup timeout */
-
-/* define value of internal 40KHz RC oscillator(IRC40K) in Hz */
-#if !defined(IRC40K_VALUE)
-#define IRC40K_VALUE ((uint32_t)40000)
-#endif /* internal 40KHz RC oscillator value */
-
-/* define value of low speed crystal oscillator (LXTAL)in Hz */
-#if !defined(LXTAL_VALUE)
-#define LXTAL_VALUE ((uint32_t)32768)
-#endif /* low speed crystal oscillator value */
-
-/* define clock source */
-#define SEL_IRC8M ((uint16_t)0U)
-#define SEL_HXTAL ((uint16_t)1U)
-#define SEL_PLL   ((uint16_t)2U)
-
-/* define startup timeout count */
-#define OSC_STARTUP_TIMEOUT   ((uint32_t)0xFFFFFU)
-#define LXTAL_STARTUP_TIMEOUT ((uint32_t)0x3FFFFFFU)
-
 /* define the peripheral clock enable bit position and its register index offset */
 #define RCU_REGIDX_BIT(regidx, bitpos) (((uint32_t)(regidx) << 6) | (uint32_t)(bitpos))
 #define RCU_REG_VAL(periph)            (REG32(RCU + ((uint32_t)(periph) >> 6)))

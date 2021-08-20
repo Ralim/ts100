@@ -2,9 +2,6 @@
 #define FREERTOS_CONFIG_H
 #include "nuclei_sdk_soc.h"
 #include <stdint.h>
-// RISC-V configuration
-#define USER_MODE_TASKS 0
-
 #define configUSE_PREEMPTION                    1
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 0
 #define configUSE_TICKLESS_IDLE                 0
@@ -25,7 +22,6 @@
 #define configUSE_TIME_SLICING                  1
 #define configUSE_NEWLIB_REENTRANT              0
 #define configENABLE_BACKWARD_COMPATIBILITY     0
-#define configNUM_THREAD_LOCAL_STORAGE_POINTERS 5
 
 #define INCLUDE_uxTaskGetStackHighWaterMark 1
 #define INCLUDE_xTaskGetSchedulerState      1
@@ -39,7 +35,7 @@
 /* Hook function related definitions. */
 #define configUSE_IDLE_HOOK                1
 #define configUSE_TICK_HOOK                0
-#define configCHECK_FOR_STACK_OVERFLOW     2
+#define configCHECK_FOR_STACK_OVERFLOW     1
 #define configUSE_MALLOC_FAILED_HOOK       0
 #define configUSE_DAEMON_TASK_STARTUP_HOOK 0
 

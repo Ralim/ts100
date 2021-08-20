@@ -1,12 +1,13 @@
 /*!
-    \file  gd32vf103_eclic.h
-    \brief definitions for the ECLIC(Enhancement Core-Local Interrupt Controller)
+    \file    gd32vf103_eclic.h
+    \brief   definitions for the ECLIC(Enhancement Core-Local Interrupt Controller)
 
     \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -31,9 +32,7 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 OF SUCH DAMAGE.
 */
-#ifdef __cplusplus
-extern "C" {
-#endif
+
 #ifndef GD32VF103_ECLIC_H
 #define GD32VF103_ECLIC_H
 
@@ -49,8 +48,12 @@ extern "C" {
 #define __SEV eclic_send_event
 
 /* function declarations */
+/* enable the global interrupt */
+void eclic_global_interrupt_enable(void);
+/* disable the global interrupt */
+void eclic_global_interrupt_disable(void);
 /* set the priority group */
-void eclic_priority_group_set(uint32_t prigroup);
+void eclic_priority_group_set(uint8_t prigroup);
 /* enable the interrupt request */
 void eclic_irq_enable(uint32_t source, uint8_t level, uint8_t priority);
 /* disable the interrupt request */
@@ -62,6 +65,3 @@ void eclic_system_reset(void);
 void eclic_send_event(void);
 
 #endif /* GD32VF103_ECLIC_H */
-#ifdef __cplusplus
-}
-#endif

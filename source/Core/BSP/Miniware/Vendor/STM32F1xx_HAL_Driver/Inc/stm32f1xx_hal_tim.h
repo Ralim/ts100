@@ -1376,11 +1376,11 @@ mode.
  *            @arg TIM_ICPSC_DIV4: capture is done once every 4 events
  *            @arg TIM_ICPSC_DIV8: capture is done once every 8 events
  */
-#define __HAL_TIM_GET_ICPRESCALER(__HANDLE__, __CHANNEL__)                                         \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCMR1 & TIM_CCMR1_IC1PSC)         \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? (((__HANDLE__)->Instance->CCMR1 & TIM_CCMR1_IC2PSC) >> 8U) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 & TIM_CCMR2_IC3PSC)         \
-                                      : (((__HANDLE__)->Instance->CCMR2 & TIM_CCMR2_IC4PSC)) >> 8U)
+#define __HAL_TIM_GET_ICPRESCALER(__HANDLE__, __CHANNEL__)                                             \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                                    \
+       ? ((__HANDLE__)->Instance->CCMR1 & TIM_CCMR1_IC1PSC)                                            \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? (((__HANDLE__)->Instance->CCMR1 & TIM_CCMR1_IC2PSC) >> 8U) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 & TIM_CCMR2_IC3PSC) : (((__HANDLE__)->Instance->CCMR2 & TIM_CCMR2_IC4PSC)) >> 8U)
 
 /**
  * @brief  Set the TIM Capture Compare Register value on runtime without calling another time ConfigChannel function.
@@ -1394,11 +1394,11 @@ mode.
  * @param  __COMPARE__ specifies the Capture Compare register new value.
  * @retval None
  */
-#define __HAL_TIM_SET_COMPARE(__HANDLE__, __CHANNEL__, __COMPARE__)                    \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCR2 = (__COMPARE__)) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCR3 = (__COMPARE__)) \
-                                      : ((__HANDLE__)->Instance->CCR4 = (__COMPARE__)))
+#define __HAL_TIM_SET_COMPARE(__HANDLE__, __CHANNEL__, __COMPARE__)                        \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                        \
+       ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__))                                    \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCR2 = (__COMPARE__)) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCR3 = (__COMPARE__)) : ((__HANDLE__)->Instance->CCR4 = (__COMPARE__)))
 
 /**
  * @brief  Get the TIM Capture Compare Register value on runtime.
@@ -1411,11 +1411,10 @@ mode.
  *            @arg TIM_CHANNEL_4: get capture/compare 4 register value
  * @retval 16-bit or 32-bit value of the capture/compare register (TIMx_CCRy)
  */
-#define __HAL_TIM_GET_COMPARE(__HANDLE__, __CHANNEL__)                 \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCR1) \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCR2) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCR3) \
-                                      : ((__HANDLE__)->Instance->CCR4))
+#define __HAL_TIM_GET_COMPARE(__HANDLE__, __CHANNEL__) \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                    \
+       ? ((__HANDLE__)->Instance->CCR1)                \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCR2) : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCR3) : ((__HANDLE__)->Instance->CCR4))
 
 /**
  * @brief  Set the TIM Output compare preload.
@@ -1428,11 +1427,11 @@ mode.
  *            @arg TIM_CHANNEL_4: TIM Channel 4 selected
  * @retval None
  */
-#define __HAL_TIM_ENABLE_OCxPRELOAD(__HANDLE__, __CHANNEL__)                               \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCMR1 |= TIM_CCMR1_OC1PE) \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 |= TIM_CCMR1_OC2PE) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 |= TIM_CCMR2_OC3PE) \
-                                      : ((__HANDLE__)->Instance->CCMR2 |= TIM_CCMR2_OC4PE))
+#define __HAL_TIM_ENABLE_OCxPRELOAD(__HANDLE__, __CHANNEL__)                                   \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                            \
+       ? ((__HANDLE__)->Instance->CCMR1 |= TIM_CCMR1_OC1PE)                                    \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 |= TIM_CCMR1_OC2PE) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 |= TIM_CCMR2_OC3PE) : ((__HANDLE__)->Instance->CCMR2 |= TIM_CCMR2_OC4PE))
 
 /**
  * @brief  Reset the TIM Output compare preload.
@@ -1445,11 +1444,11 @@ mode.
  *            @arg TIM_CHANNEL_4: TIM Channel 4 selected
  * @retval None
  */
-#define __HAL_TIM_DISABLE_OCxPRELOAD(__HANDLE__, __CHANNEL__)                               \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_OC1PE) \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_OC2PE) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_OC3PE) \
-                                      : ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_OC4PE))
+#define __HAL_TIM_DISABLE_OCxPRELOAD(__HANDLE__, __CHANNEL__)                                   \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                             \
+       ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_OC1PE)                                    \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_OC2PE) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_OC3PE) : ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_OC4PE))
 
 /**
  * @brief  Enable fast mode for a given channel.
@@ -1466,11 +1465,11 @@ mode.
  * @note  Fast mode acts only if the channel is configured in PWM1 or PWM2 mode.
  * @retval None
  */
-#define __HAL_TIM_ENABLE_OCxFAST(__HANDLE__, __CHANNEL__)                                  \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCMR1 |= TIM_CCMR1_OC1FE) \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 |= TIM_CCMR1_OC2FE) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 |= TIM_CCMR2_OC3FE) \
-                                      : ((__HANDLE__)->Instance->CCMR2 |= TIM_CCMR2_OC4FE))
+#define __HAL_TIM_ENABLE_OCxFAST(__HANDLE__, __CHANNEL__)                                      \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                            \
+       ? ((__HANDLE__)->Instance->CCMR1 |= TIM_CCMR1_OC1FE)                                    \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 |= TIM_CCMR1_OC2FE) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 |= TIM_CCMR2_OC3FE) : ((__HANDLE__)->Instance->CCMR2 |= TIM_CCMR2_OC4FE))
 
 /**
  * @brief  Disable fast mode for a given channel.
@@ -1487,11 +1486,11 @@ mode.
  *        trigger input is 5 clock cycles.
  * @retval None
  */
-#define __HAL_TIM_DISABLE_OCxFAST(__HANDLE__, __CHANNEL__)                                  \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_OC1FE) \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_OC2FE) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_OC3FE) \
-                                      : ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_OC4FE))
+#define __HAL_TIM_DISABLE_OCxFAST(__HANDLE__, __CHANNEL__)                                      \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                             \
+       ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_OC1FE)                                    \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_OC2FE) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_OC3FE) : ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_OC4FE))
 
 /**
  * @brief  Set the Update Request Source (URS) bit of the TIMx_CR1 register.
@@ -1694,41 +1693,40 @@ mode.
 
 #define IS_TIM_SLAVEMODE_TRIGGER_ENABLED(__TRIGGER__) ((__TRIGGER__) == TIM_SLAVEMODE_TRIGGER)
 
-#define TIM_SET_ICPRESCALERVALUE(__HANDLE__, __CHANNEL__, __ICPSC__)                           \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCMR1 |= (__ICPSC__))         \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 |= ((__ICPSC__) << 8U)) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 |= (__ICPSC__))         \
-                                      : ((__HANDLE__)->Instance->CCMR2 |= ((__ICPSC__) << 8U)))
+#define TIM_SET_ICPRESCALERVALUE(__HANDLE__, __CHANNEL__, __ICPSC__)                               \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                                \
+       ? ((__HANDLE__)->Instance->CCMR1 |= (__ICPSC__))                                            \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 |= ((__ICPSC__) << 8U)) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 |= (__ICPSC__)) : ((__HANDLE__)->Instance->CCMR2 |= ((__ICPSC__) << 8U)))
 
-#define TIM_RESET_ICPRESCALERVALUE(__HANDLE__, __CHANNEL__)                                  \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_IC1PSC) \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_IC2PSC) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_IC3PSC) \
-                                      : ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_IC4PSC))
+#define TIM_RESET_ICPRESCALERVALUE(__HANDLE__, __CHANNEL__)                                      \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                              \
+       ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_IC1PSC)                                    \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCMR1 &= ~TIM_CCMR1_IC2PSC) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_IC3PSC) : ((__HANDLE__)->Instance->CCMR2 &= ~TIM_CCMR2_IC4PSC))
 
-#define TIM_SET_CAPTUREPOLARITY(__HANDLE__, __CHANNEL__, __POLARITY__)                           \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCER |= (__POLARITY__))         \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCER |= ((__POLARITY__) << 4U)) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCER |= ((__POLARITY__) << 8U)) \
-                                      : ((__HANDLE__)->Instance->CCER |= (((__POLARITY__) << 12U))))
+#define TIM_SET_CAPTUREPOLARITY(__HANDLE__, __CHANNEL__, __POLARITY__)                               \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                                  \
+       ? ((__HANDLE__)->Instance->CCER |= (__POLARITY__))                                            \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCER |= ((__POLARITY__) << 4U)) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCER |= ((__POLARITY__) << 8U)) : ((__HANDLE__)->Instance->CCER |= (((__POLARITY__) << 12U))))
 
-#define TIM_RESET_CAPTUREPOLARITY(__HANDLE__, __CHANNEL__)                                                  \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->Instance->CCER &= ~(TIM_CCER_CC1P | TIM_CCER_CC1NP)) \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCER &= ~(TIM_CCER_CC2P | TIM_CCER_CC2NP)) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCER &= ~(TIM_CCER_CC3P))                  \
-                                      : ((__HANDLE__)->Instance->CCER &= ~(TIM_CCER_CC4P)))
+#define TIM_RESET_CAPTUREPOLARITY(__HANDLE__, __CHANNEL__)                                                      \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                                             \
+       ? ((__HANDLE__)->Instance->CCER &= ~(TIM_CCER_CC1P | TIM_CCER_CC1NP))                                    \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCER &= ~(TIM_CCER_CC2P | TIM_CCER_CC2NP)) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCER &= ~(TIM_CCER_CC3P)) : ((__HANDLE__)->Instance->CCER &= ~(TIM_CCER_CC4P)))
 
-#define TIM_CHANNEL_STATE_GET(__HANDLE__, __CHANNEL__)                \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? (__HANDLE__)->ChannelState[0] \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? (__HANDLE__)->ChannelState[1] \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? (__HANDLE__)->ChannelState[2] \
-                                      : (__HANDLE__)->ChannelState[3])
+#define TIM_CHANNEL_STATE_GET(__HANDLE__, __CHANNEL__) \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                    \
+       ? (__HANDLE__)->ChannelState[0]                 \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? (__HANDLE__)->ChannelState[1] : ((__CHANNEL__) == TIM_CHANNEL_3) ? (__HANDLE__)->ChannelState[2] : (__HANDLE__)->ChannelState[3])
 
-#define TIM_CHANNEL_STATE_SET(__HANDLE__, __CHANNEL__, __CHANNEL_STATE__)                     \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->ChannelState[0] = (__CHANNEL_STATE__)) \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->ChannelState[1] = (__CHANNEL_STATE__)) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->ChannelState[2] = (__CHANNEL_STATE__)) \
-                                      : ((__HANDLE__)->ChannelState[3] = (__CHANNEL_STATE__)))
+#define TIM_CHANNEL_STATE_SET(__HANDLE__, __CHANNEL__, __CHANNEL_STATE__)                         \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                               \
+       ? ((__HANDLE__)->ChannelState[0] = (__CHANNEL_STATE__))                                    \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->ChannelState[1] = (__CHANNEL_STATE__)) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->ChannelState[2] = (__CHANNEL_STATE__)) : ((__HANDLE__)->ChannelState[3] = (__CHANNEL_STATE__)))
 
 #define TIM_CHANNEL_STATE_SET_ALL(__HANDLE__, __CHANNEL_STATE__) \
   do {                                                           \
@@ -1738,17 +1736,16 @@ mode.
     (__HANDLE__)->ChannelState[3] = (__CHANNEL_STATE__);         \
   } while (0)
 
-#define TIM_CHANNEL_N_STATE_GET(__HANDLE__, __CHANNEL__)               \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? (__HANDLE__)->ChannelNState[0] \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? (__HANDLE__)->ChannelNState[1] \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? (__HANDLE__)->ChannelNState[2] \
-                                      : (__HANDLE__)->ChannelNState[3])
+#define TIM_CHANNEL_N_STATE_GET(__HANDLE__, __CHANNEL__) \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                      \
+       ? (__HANDLE__)->ChannelNState[0]                  \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? (__HANDLE__)->ChannelNState[1] : ((__CHANNEL__) == TIM_CHANNEL_3) ? (__HANDLE__)->ChannelNState[2] : (__HANDLE__)->ChannelNState[3])
 
-#define TIM_CHANNEL_N_STATE_SET(__HANDLE__, __CHANNEL__, __CHANNEL_STATE__)                    \
-  (((__CHANNEL__) == TIM_CHANNEL_1)   ? ((__HANDLE__)->ChannelNState[0] = (__CHANNEL_STATE__)) \
-   : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->ChannelNState[1] = (__CHANNEL_STATE__)) \
-   : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->ChannelNState[2] = (__CHANNEL_STATE__)) \
-                                      : ((__HANDLE__)->ChannelNState[3] = (__CHANNEL_STATE__)))
+#define TIM_CHANNEL_N_STATE_SET(__HANDLE__, __CHANNEL__, __CHANNEL_STATE__)                        \
+  (((__CHANNEL__) == TIM_CHANNEL_1)                                                                \
+       ? ((__HANDLE__)->ChannelNState[0] = (__CHANNEL_STATE__))                                    \
+       : ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->ChannelNState[1] = (__CHANNEL_STATE__)) \
+                                          : ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->ChannelNState[2] = (__CHANNEL_STATE__)) : ((__HANDLE__)->ChannelNState[3] = (__CHANNEL_STATE__)))
 
 #define TIM_CHANNEL_N_STATE_SET_ALL(__HANDLE__, __CHANNEL_STATE__) \
   do {                                                             \

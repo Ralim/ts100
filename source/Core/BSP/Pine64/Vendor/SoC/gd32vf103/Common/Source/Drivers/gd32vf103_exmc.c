@@ -2,11 +2,12 @@
     \file    gd32vf103_exmc.c
     \brief   EXMC driver
 
-    \version 2019-6-5, V1.0.0, firmware for GD32VF103
+    \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -33,6 +34,7 @@ OF SUCH DAMAGE.
 */
 
 #include "gd32vf103_exmc.h"
+#include "gd32vf103_rcu.h"
 
 /* EXMC bank0 register reset value */
 #define BANK0_SNCTL0_REGION_RESET ((uint32_t)0x000030DAU)
@@ -112,9 +114,9 @@ void exmc_norsram_init(exmc_norsram_parameter_struct *exmc_norsram_init_struct) 
   /* clear relative bits */
   snctl &= ((uint32_t) ~(EXMC_SNCTL_NREN | EXMC_SNCTL_NRTP | EXMC_SNCTL_NRW | EXMC_SNCTL_NRWTPOL | EXMC_SNCTL_WREN | EXMC_SNCTL_NRWTEN | EXMC_SNCTL_ASYNCWAIT | EXMC_SNCTL_NRMUX));
 
-  snctl |= (uint32_t)(exmc_norsram_init_struct->address_data_mux << SNCTL_NRMUX_OFFSET) | exmc_norsram_init_struct->memory_type | exmc_norsram_init_struct->databus_width
-           | exmc_norsram_init_struct->nwait_polarity | (exmc_norsram_init_struct->memory_write << SNCTL_WREN_OFFSET) | (exmc_norsram_init_struct->nwait_signal << SNCTL_NRWTEN_OFFSET)
-           | (exmc_norsram_init_struct->asyn_wait << SNCTL_ASYNCWAIT_OFFSET);
+  snctl |= (uint32_t)((uint32_t)exmc_norsram_init_struct->address_data_mux << SNCTL_NRMUX_OFFSET) | exmc_norsram_init_struct->memory_type | exmc_norsram_init_struct->databus_width
+           | exmc_norsram_init_struct->nwait_polarity | ((uint32_t)exmc_norsram_init_struct->memory_write << SNCTL_WREN_OFFSET)
+           | ((uint32_t)exmc_norsram_init_struct->nwait_signal << SNCTL_NRWTEN_OFFSET) | ((uint32_t)exmc_norsram_init_struct->asyn_wait << SNCTL_ASYNCWAIT_OFFSET);
 
   sntcfg = (uint32_t)((exmc_norsram_init_struct->read_write_timing->asyn_address_setuptime - 1U) & EXMC_SNTCFG_ASET)
            | (((exmc_norsram_init_struct->read_write_timing->asyn_address_holdtime - 1U) << SNTCFG_AHLD_OFFSET) & EXMC_SNTCFG_AHLD)

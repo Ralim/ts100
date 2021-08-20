@@ -1,12 +1,13 @@
 /*!
-    \file  gd32vf103_exmc.h
-    \brief definitions for the EXMC
+    \file    gd32vf103_exmc.h
+    \brief   definitions for the EXMC
 
-    \version 2019-6-5, V1.0.0, firmware for GD32VF103
+    \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -36,8 +37,6 @@ OF SUCH DAMAGE.
 #define GD32VF103_EXMC_H
 
 #include "gd32vf103.h"
-#include "gd32vf103_dbg.h"
-#include "gd32vf103_rcu.h"
 
 /* EXMC definitions */
 #define EXMC (EXMC_BASE) /*!< EXMC register base address */
@@ -79,13 +78,13 @@ typedef struct {
 /* EXMC NOR/SRAM initialize struct */
 typedef struct {
   uint32_t                              norsram_region;    /*!< select the region of EXMC NOR/SRAM bank */
-  uint32_t                              asyn_wait;         /*!< enable or disable the asynchronous wait function */
-  uint32_t                              nwait_signal;      /*!< enable or disable the NWAIT signal */
-  uint32_t                              memory_write;      /*!< enable or disable the write operation */
+  ControlStatus                         asyn_wait;         /*!< enable or disable the asynchronous wait function */
+  ControlStatus                         nwait_signal;      /*!< enable or disable the NWAIT signal */
+  ControlStatus                         memory_write;      /*!< enable or disable the write operation */
   uint32_t                              nwait_polarity;    /*!< specifies the polarity of NWAIT signal from memory */
   uint32_t                              databus_width;     /*!< specifies the databus width of external memory */
   uint32_t                              memory_type;       /*!< specifies the type of external memory */
-  uint32_t                              address_data_mux;  /*!< specifies whether the data bus and address bus are multiplexed */
+  ControlStatus                         address_data_mux;  /*!< specifies whether the data bus and address bus are multiplexed */
   exmc_norsram_timing_parameter_struct *read_write_timing; /*!< timing parameters for read and write */
 } exmc_norsram_parameter_struct;
 

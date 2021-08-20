@@ -4,9 +4,9 @@ LABEL maintainer="Ben V. Brown <ralim@ralimtek.com>"
 WORKDIR /build
 # Add extra mirrors for options
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt focal main restricted universe multiverse" > /etc/apt/sources.list && \
-    echo "deb mirror://mirrors.ubuntu.com/mirrors.txt focal-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb mirror://mirrors.ubuntu.com/mirrors.txt focal-security main restricted universe multiverse" >> /etc/apt/sources.list && \
-    DEBIAN_FRONTEND=noninteractive apt-get update
+  echo "deb mirror://mirrors.ubuntu.com/mirrors.txt focal-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+  echo "deb mirror://mirrors.ubuntu.com/mirrors.txt focal-security main restricted universe multiverse" >> /etc/apt/sources.list && \
+  DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y ca-certificates 
 # Install dependencies to build the firmware
 RUN apt-get install -y \
   make \

@@ -799,14 +799,10 @@ extern "C" {
 #elif defined(STM32F100xB) || defined(STM32F101xB) || defined(STM32F103xB) || defined(STM32F105xC) || defined(STM32F107xC)
 #define GPIO_GET_INDEX(__GPIOx__) (((__GPIOx__) == (GPIOA)) ? 0uL : ((__GPIOx__) == (GPIOB)) ? 1uL : ((__GPIOx__) == (GPIOC)) ? 2uL : ((__GPIOx__) == (GPIOD)) ? 3uL : 4uL)
 #elif defined(STM32F100xE) || defined(STM32F101xE) || defined(STM32F101xG) || defined(STM32F103xE) || defined(STM32F103xG)
-#define GPIO_GET_INDEX(__GPIOx__)   \
-  (((__GPIOx__) == (GPIOA))   ? 0uL \
-   : ((__GPIOx__) == (GPIOB)) ? 1uL \
-   : ((__GPIOx__) == (GPIOC)) ? 2uL \
-   : ((__GPIOx__) == (GPIOD)) ? 3uL \
-   : ((__GPIOx__) == (GPIOE)) ? 4uL \
-   : ((__GPIOx__) == (GPIOF)) ? 5uL \
-                              : 6uL)
+#define GPIO_GET_INDEX(__GPIOx__) \
+  (((__GPIOx__) == (GPIOA))       \
+       ? 0uL                      \
+       : ((__GPIOx__) == (GPIOB)) ? 1uL : ((__GPIOx__) == (GPIOC)) ? 2uL : ((__GPIOx__) == (GPIOD)) ? 3uL : ((__GPIOx__) == (GPIOE)) ? 4uL : ((__GPIOx__) == (GPIOF)) ? 5uL : 6uL)
 #endif
 
 #define AFIO_REMAP_ENABLE(REMAP_PIN) \

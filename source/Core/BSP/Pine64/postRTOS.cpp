@@ -5,7 +5,6 @@
 #include "Settings.h"
 #include "Si7210.h"
 #include "cmsis_os.h"
-#include "fusbpd.h"
 #include "main.hpp"
 #include "power.hpp"
 #include "stdlib.h"

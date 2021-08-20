@@ -1,12 +1,13 @@
 /*!
-    \file  gd32vf103_gpio.h
-    \brief definitions for the GPIO
+    \file    gd32vf103_gpio.h
+    \brief   definitions for the GPIO
 
-    \version 2019-06-5, V1.0.0, firmware for GD32VF103
+    \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -36,11 +37,6 @@ OF SUCH DAMAGE.
 #define GD32VF103_GPIO_H
 
 #include "gd32vf103.h"
-#include "gd32vf103_dbg.h"
-#include "gd32vf103_rcu.h"
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 /* GPIOx(x=A,B,C,D,E) definitions */
 #define GPIOA (GPIO_BASE + 0x00000000U)
@@ -422,8 +418,5 @@ void gpio_event_output_disable(void);
 
 /* lock GPIO pin bit */
 void gpio_pin_lock(uint32_t gpio_periph, uint32_t pin);
-#ifdef __cplusplus
-}
-#endif
 
 #endif /* GD32VF103_GPIO_H */

@@ -5,8 +5,11 @@
  *      Author: Ralim
  */
 #include "Debug.h"
+#include "FreeRTOS.h"
 #include "Pins.h"
+
 extern "C" {
+
 #include "gd32vf103_usart.h"
 }
 char                    uartOutputBuffer[uartOutputBufferLength];
@@ -34,7 +37,18 @@ void                    log_system_state(int32_t PWMWattsx10) {
     usart_interrupt_enable(UART_PERIF, USART_INT_TBE);
   }
 }
-
+ssize_t _write(int fd, const void *ptr, size_t len) {
+  if (len > uartOutputBufferLength) {
+    len = uartOutputBufferLength;
+  }
+  outputLength     = len;
+  currentOutputPos = 0;
+  memcpy(uartOutputBuffer, ptr, len);
+  /* enable USART1 Transmit Buffer Empty interrupt */
+  usart_interrupt_enable(UART_PERIF, USART_INT_TBE);
+  delay_ms(1);
+  return len;
+}
 void USART1_IRQHandler(void) {
   if (RESET != usart_interrupt_flag_get(UART_PERIF, USART_INT_FLAG_TBE)) {
     /* write one byte to the transmit data register */

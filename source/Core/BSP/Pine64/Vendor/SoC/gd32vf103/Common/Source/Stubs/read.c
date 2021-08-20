@@ -1,5 +1,4 @@
 #include "gd32vf103_usart.h"
-#include "nuclei_sdk_hal.h"
 #include <errno.h>
 #include <stdint.h>
 #include <sys/types.h>

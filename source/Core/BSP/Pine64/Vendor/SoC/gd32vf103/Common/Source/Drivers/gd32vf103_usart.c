@@ -2,11 +2,13 @@
     \file    gd32vf103_usart.c
     \brief   USART driver
 
-    \version 2019-6-5, V1.0.0, firmware for GD32VF103
+    \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2019-09-18, V1.0.1, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -33,6 +35,7 @@ OF SUCH DAMAGE.
 */
 
 #include "gd32vf103_usart.h"
+#include "gd32vf103_rcu.h"
 
 /*!
     \brief      reset USART/UART
@@ -556,12 +559,12 @@ void usart_dma_transmit_config(uint32_t usart_periph, uint32_t dmacmd) {
     \param[in]  usart_periph: USARTx(x=0,1,2)/UARTx(x=3,4)
     \param[in]  flag: USART flags, refer to usart_flag_enum
                 only one parameter can be selected which is shown as below:
-      \arg        USART_FLAG_CTSF: CTS change flag
-      \arg        USART_FLAG_LBDF: LIN break detected flag
+      \arg        USART_FLAG_CTS: CTS change flag
+      \arg        USART_FLAG_LBD: LIN break detected flag
       \arg        USART_FLAG_TBE: transmit data buffer empty
       \arg        USART_FLAG_TC: transmission complete
       \arg        USART_FLAG_RBNE: read data buffer not empty
-      \arg        USART_FLAG_IDLEF: IDLE frame detected flag
+      \arg        USART_FLAG_IDLE: IDLE frame detected flag
       \arg        USART_FLAG_ORERR: overrun error
       \arg        USART_FLAG_NERR: noise error flag
       \arg        USART_FLAG_FERR: frame error flag
@@ -582,8 +585,8 @@ FlagStatus usart_flag_get(uint32_t usart_periph, usart_flag_enum flag) {
     \param[in]  usart_periph: USARTx(x=0,1,2)/UARTx(x=3,4)
     \param[in]  flag: USART flags, refer to usart_flag_enum
                 only one parameter can be selected which is shown as below:
-      \arg        USART_FLAG_CTSF: CTS change flag
-      \arg        USART_FLAG_LBDF: LIN break detected flag
+      \arg        USART_FLAG_CTS: CTS change flag
+      \arg        USART_FLAG_LBD: LIN break detected flag
       \arg        USART_FLAG_TC: transmission complete
       \arg        USART_FLAG_RBNE: read data buffer not empty
     \param[out] none
@@ -594,7 +597,7 @@ void usart_flag_clear(uint32_t usart_periph, usart_flag_enum flag) { USART_REG_V
 /*!
     \brief      enable USART interrupt
      \param[in]  usart_periph: USARTx(x=0,1,2)/UARTx(x=3,4)
-    \param[in]  int_flag
+    \param[in]  interrupt
                 only one parameter can be selected which is shown as below:
       \arg        USART_INT_PERR: parity error interrupt
       \arg        USART_INT_TBE: transmitter buffer empty interrupt
@@ -607,12 +610,12 @@ void usart_flag_clear(uint32_t usart_periph, usart_flag_enum flag) { USART_REG_V
     \param[out] none
     \retval     none
 */
-void usart_interrupt_enable(uint32_t usart_periph, uint32_t int_flag) { USART_REG_VAL(usart_periph, int_flag) |= BIT(USART_BIT_POS(int_flag)); }
+void usart_interrupt_enable(uint32_t usart_periph, uint32_t interrupt) { USART_REG_VAL(usart_periph, interrupt) |= BIT(USART_BIT_POS(interrupt)); }
 
 /*!
     \brief      disable USART interrupt
      \param[in]  usart_periph: USARTx(x=0,1,2)/UARTx(x=3,4)
-    \param[in]  int_flag
+    \param[in]  interrupt
                 only one parameter can be selected which is shown as below:
       \arg        USART_INT_PERR: parity error interrupt
       \arg        USART_INT_TBE: transmitter buffer empty interrupt
@@ -625,7 +628,7 @@ void usart_interrupt_enable(uint32_t usart_periph, uint32_t int_flag) { USART_RE
     \param[out] none
     \retval     none
 */
-void usart_interrupt_disable(uint32_t usart_periph, uint32_t int_flag) { USART_REG_VAL(usart_periph, int_flag) &= ~BIT(USART_BIT_POS(int_flag)); }
+void usart_interrupt_disable(uint32_t usart_periph, uint32_t interrupt) { USART_REG_VAL(usart_periph, interrupt) &= ~BIT(USART_BIT_POS(interrupt)); }
 
 /*!
     \brief      get USART interrupt and flag status
@@ -663,7 +666,7 @@ FlagStatus usart_interrupt_flag_get(uint32_t usart_periph, uint32_t int_flag) {
 /*!
     \brief      clear USART interrupt flag in STAT register
     \param[in]  usart_periph: USARTx(x=0,1,2)/UARTx(x=3,4)
-    \param[in]  flag: USART interrupt flag
+    \param[in]  int_flag: USART interrupt flag
                 only one parameter can be selected which is shown as below:
       \arg        USART_INT_FLAG_CTS: CTS change flag
       \arg        USART_INT_FLAG_LBD: LIN break detected flag
@@ -672,18 +675,4 @@ FlagStatus usart_interrupt_flag_get(uint32_t usart_periph, uint32_t int_flag) {
     \param[out] none
     \retval     none
 */
-void usart_interrupt_flag_clear(uint32_t usart_periph, uint32_t flag) { USART_REG_VAL2(usart_periph, flag) &= ~BIT(USART_BIT_POS2(flag)); }
-
-int usart_write(uint32_t usart_periph, int ch) {
-  usart_data_transmit(usart_periph, (uint8_t)ch);
-  while (usart_flag_get(usart_periph, USART_FLAG_TBE) == RESET) {}
-
-  return ch;
-}
-
-uint8_t usart_read(uint32_t usart_periph) {
-  /* loop until RBNE = 1 */
-  while (usart_flag_get(usart_periph, USART_FLAG_RBNE) == RESET)
-    ;
-  return (usart_data_receive(usart_periph));
-}
+void usart_interrupt_flag_clear(uint32_t usart_periph, uint32_t int_flag) { USART_REG_VAL2(usart_periph, int_flag) &= ~BIT(USART_BIT_POS2(int_flag)); }

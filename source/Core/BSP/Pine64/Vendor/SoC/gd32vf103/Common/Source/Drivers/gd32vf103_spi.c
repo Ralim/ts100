@@ -1,12 +1,13 @@
 /*!
-    \file  gd32vf103_spi.c
-    \brief SPI driver
+    \file    gd32vf103_spi.c
+    \brief   SPI driver
 
-    \version 2019-6-5, V1.0.0, firmware for GD32VF103
+    \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -33,6 +34,7 @@ OF SUCH DAMAGE.
 */
 
 #include "gd32vf103_spi.h"
+#include "gd32vf103_rcu.h"
 
 /* SPI/I2S parameter initialization mask */
 #define SPI_INIT_MASK ((uint32_t)0x00003040U) /*!< SPI parameter initialization mask */

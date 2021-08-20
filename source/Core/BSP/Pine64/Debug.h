@@ -16,7 +16,7 @@
 const unsigned int uartOutputBufferLength = 32;
 extern char        uartOutputBuffer[uartOutputBufferLength];
 extern "C" {
-
-void USART1_IRQHandler(void);
+ssize_t _write(int fd, const void *ptr, size_t len);
+void    USART1_IRQHandler(void);
 }
 #endif /* CORE_BSP_PINE64_DEBUG_H_ */

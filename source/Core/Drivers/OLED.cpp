@@ -121,7 +121,7 @@ void OLED::initialize() {
 
   for (int tries = 0; tries < 10; tries++) {
     if (I2C_CLASS::writeRegistersBulk(DEVICEADDR_OLED, OLED_Setup_Array, sizeof(OLED_Setup_Array) / sizeof(OLED_Setup_Array[0]))) {
-      return;
+      tries = 11;
     }
   }
   setDisplayState(DisplayState::ON);

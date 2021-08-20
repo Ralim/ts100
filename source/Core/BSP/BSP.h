@@ -1,4 +1,5 @@
 #include "BSP_Flash.h"
+#include "BSP_PD.h"
 #include "BSP_Power.h"
 #include "BSP_QC.h"
 #include "Defines.h"
@@ -61,9 +62,8 @@ void reboot();
 uint8_t showBootLogoIfavailable();
 // delay wrapper for delay using the hardware timer (used before RTOS)
 void delay_ms(uint16_t count);
-// Used to allow knowledge of if usb_pd is being used
-uint8_t usb_pd_detect();
-bool    getHallSensorFitted();
+// Probe if the Hall sensor is fitted to the unit
+bool getHallSensorFitted();
 // If the iron has a hall effect sensor in the handle, return an signed count of the reading
 // If the sensor is single polarity (or polarity insensitive) just return 0..32768
 int16_t getRawHallEffect();

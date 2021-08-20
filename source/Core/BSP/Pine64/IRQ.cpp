@@ -7,7 +7,6 @@
 
 #include "IRQ.h"
 #include "Pins.h"
-#include "int_n.h"
 volatile uint8_t  i2c_read_process  = 0;
 volatile uint8_t  i2c_write_process = 0;
 volatile uint8_t  i2c_slave_address = 0;
@@ -103,6 +102,7 @@ bool tryBetterPWM(uint8_t pwm) {
   }
   return false;
 }
+extern osThreadId POWTaskHandle;
 
 void EXTI5_9_IRQHandler(void) {
 #ifdef POW_PD
@@ -111,7 +111,7 @@ void EXTI5_9_IRQHandler(void) {
 
     if (RESET == gpio_input_bit_get(FUSB302_IRQ_GPIO_Port, FUSB302_IRQ_Pin)) {
       if (xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED) {
-        InterruptHandler::irqCallback();
+        xTaskNotify(POWTaskHandle, 1, eSetBits);
       }
     }
   }

@@ -659,10 +659,9 @@ uint32_t             HAL_I2C_GetError(I2C_HandleTypeDef *hi2c);
 #define I2C_SPEED_STANDARD(__PCLK__, __SPEED__)             ((I2C_CCR_CALCULATION((__PCLK__), (__SPEED__), 2U) < 4U) ? 4U : I2C_CCR_CALCULATION((__PCLK__), (__SPEED__), 2U))
 #define I2C_SPEED_FAST(__PCLK__, __SPEED__, __DUTYCYCLE__) \
   (((__DUTYCYCLE__) == I2C_DUTYCYCLE_2) ? I2C_CCR_CALCULATION((__PCLK__), (__SPEED__), 3U) : (I2C_CCR_CALCULATION((__PCLK__), (__SPEED__), 25U) | I2C_DUTYCYCLE_16_9))
-#define I2C_SPEED(__PCLK__, __SPEED__, __DUTYCYCLE__)                                                                                 \
-  (((__SPEED__) <= 100000U)                                                           ? (I2C_SPEED_STANDARD((__PCLK__), (__SPEED__))) \
-   : ((I2C_SPEED_FAST((__PCLK__), (__SPEED__), (__DUTYCYCLE__)) & I2C_CCR_CCR) == 0U) ? 1U                                            \
-                                                                                      : ((I2C_SPEED_FAST((__PCLK__), (__SPEED__), (__DUTYCYCLE__))) | I2C_CCR_FS))
+#define I2C_SPEED(__PCLK__, __SPEED__, __DUTYCYCLE__)                       \
+  (((__SPEED__) <= 100000U) ? (I2C_SPEED_STANDARD((__PCLK__), (__SPEED__))) \
+                            : ((I2C_SPEED_FAST((__PCLK__), (__SPEED__), (__DUTYCYCLE__)) & I2C_CCR_CCR) == 0U) ? 1U : ((I2C_SPEED_FAST((__PCLK__), (__SPEED__), (__DUTYCYCLE__))) | I2C_CCR_FS))
 
 #define I2C_7BIT_ADD_WRITE(__ADDRESS__) ((uint8_t)((__ADDRESS__) & (uint8_t)(~I2C_OAR1_ADD0)))
 #define I2C_7BIT_ADD_READ(__ADDRESS__)  ((uint8_t)((__ADDRESS__) | I2C_OAR1_ADD0))

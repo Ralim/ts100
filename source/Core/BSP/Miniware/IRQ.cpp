@@ -7,7 +7,6 @@
 
 #include "IRQ.h"
 #include "Pins.h"
-#include "int_n.h"
 
 /*
  * Catch the IRQ that says that the conversion is done on the temperature
@@ -30,9 +29,12 @@ void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *hi2c __unused) { FRToSI2C::CpltCal
 void HAL_I2C_AbortCpltCallback(I2C_HandleTypeDef *hi2c __unused) { FRToSI2C::CpltCallback(); }
 void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *hi2c __unused) { FRToSI2C::CpltCallback(); }
 
+extern osThreadId POWTaskHandle;
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
   (void)GPIO_Pin;
-  InterruptHandler::irqCallback();
+  // Notify POW thread that an irq occured
+  xTaskNotify(POWTaskHandle, 1, eSetBits);
 }
 
 bool getFUS302IRQLow() {

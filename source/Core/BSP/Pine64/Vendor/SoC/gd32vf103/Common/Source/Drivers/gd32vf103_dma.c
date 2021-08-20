@@ -2,11 +2,13 @@
     \file    gd32vf103_dma.c
     \brief   DMA driver
 
-    \version 2019-6-5, V1.0.0, firmware for GD32VF103
+    \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2019-10-30, V1.0.1, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -33,6 +35,7 @@ OF SUCH DAMAGE.
 */
 
 #include "gd32vf103_dma.h"
+#include "gd32vf103_rcu.h"
 
 #define DMA_WRONG_HANDLE \
   while (1) {}
@@ -62,7 +65,7 @@ void dma_deinit(uint32_t dma_periph, dma_channel_enum channelx) {
   DMA_CHCNT(dma_periph, channelx)   = DMA_CHCNT_RESET_VALUE;
   DMA_CHPADDR(dma_periph, channelx) = DMA_CHPADDR_RESET_VALUE;
   DMA_CHMADDR(dma_periph, channelx) = DMA_CHMADDR_RESET_VALUE;
-  DMA_INTC(dma_periph) |= DMA_FLAG_ADD(DMA_CHINTF_RESET_VALUE, channelx);
+  DMA_INTC(dma_periph) |= DMA_FLAG_ADD(DMA_CHINTF_RESET_VALUE, (uint32_t)channelx);
 }
 
 /*!
@@ -508,7 +511,7 @@ void dma_periph_increase_disable(uint32_t dma_periph, dma_channel_enum channelx)
     \param[out] none
     \retval     none
 */
-void dma_transfer_direction_config(uint32_t dma_periph, dma_channel_enum channelx, uint32_t direction) {
+void dma_transfer_direction_config(uint32_t dma_periph, dma_channel_enum channelx, uint8_t direction) {
   if (ERROR == dma_periph_and_channel_check(dma_periph, channelx)) {
     DMA_WRONG_HANDLE
   }
@@ -539,7 +542,7 @@ void dma_transfer_direction_config(uint32_t dma_periph, dma_channel_enum channel
 FlagStatus dma_flag_get(uint32_t dma_periph, dma_channel_enum channelx, uint32_t flag) {
   FlagStatus reval;
 
-  if (RESET != (DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, channelx))) {
+  if (DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, (uint32_t)channelx)) {
     reval = SET;
   } else {
     reval = RESET;
@@ -564,7 +567,7 @@ FlagStatus dma_flag_get(uint32_t dma_periph, dma_channel_enum channelx, uint32_t
     \param[out] none
     \retval     none
 */
-void dma_flag_clear(uint32_t dma_periph, dma_channel_enum channelx, uint32_t flag) { DMA_INTC(dma_periph) |= DMA_FLAG_ADD(flag, channelx); }
+void dma_flag_clear(uint32_t dma_periph, dma_channel_enum channelx, uint32_t flag) { DMA_INTC(dma_periph) |= DMA_FLAG_ADD(flag, (uint32_t)channelx); }
 
 /*!
     \brief      check DMA flag and interrupt enable bit is set or not
@@ -587,18 +590,18 @@ FlagStatus dma_interrupt_flag_get(uint32_t dma_periph, dma_channel_enum channelx
   switch (flag) {
   case DMA_INT_FLAG_FTF:
     /* check whether the full transfer finish interrupt flag is set and enabled */
-    interrupt_flag   = DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, channelx);
-    interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_FTFIE;
+    interrupt_flag   = DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, (uint32_t)channelx);
+    interrupt_enable = DMA_CHCTL(dma_periph, (uint32_t)channelx) & DMA_CHXCTL_FTFIE;
     break;
   case DMA_INT_FLAG_HTF:
     /* check whether the half transfer finish interrupt flag is set and enabled */
-    interrupt_flag   = DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, channelx);
-    interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_HTFIE;
+    interrupt_flag   = DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, (uint32_t)channelx);
+    interrupt_enable = DMA_CHCTL(dma_periph, (uint32_t)channelx) & DMA_CHXCTL_HTFIE;
     break;
   case DMA_INT_FLAG_ERR:
     /* check whether the error interrupt flag is set and enabled */
-    interrupt_flag   = DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, channelx);
-    interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_ERRIE;
+    interrupt_flag   = DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, (uint32_t)channelx);
+    interrupt_enable = DMA_CHCTL(dma_periph, (uint32_t)channelx) & DMA_CHXCTL_ERRIE;
     break;
   default:
     DMA_WRONG_HANDLE
@@ -628,7 +631,7 @@ FlagStatus dma_interrupt_flag_get(uint32_t dma_periph, dma_channel_enum channelx
     \param[out] none
     \retval     none
 */
-void dma_interrupt_flag_clear(uint32_t dma_periph, dma_channel_enum channelx, uint32_t flag) { DMA_INTC(dma_periph) |= DMA_FLAG_ADD(flag, channelx); }
+void dma_interrupt_flag_clear(uint32_t dma_periph, dma_channel_enum channelx, uint32_t flag) { DMA_INTC(dma_periph) |= DMA_FLAG_ADD(flag, (uint32_t)channelx); }
 
 /*!
     \brief      enable DMA interrupt

@@ -2,11 +2,12 @@
     \file    gd32vf103_rcu.c
     \brief   RCU driver
 
-    \version 2019-6-5, V1.0.0, firmware for GD32VF103
+    \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -34,6 +35,10 @@ OF SUCH DAMAGE.
 
 #include "gd32vf103_rcu.h"
 
+/* define startup timeout count */
+#define OSC_STARTUP_TIMEOUT   ((uint32_t)0xFFFFFU)
+#define LXTAL_STARTUP_TIMEOUT ((uint32_t)0x3FFFFFFU)
+
 /*!
     \brief      deinitialize the RCU
     \param[in]  none
@@ -44,14 +49,13 @@ void rcu_deinit(void) {
   /* enable IRC8M */
   RCU_CTL |= RCU_CTL_IRC8MEN;
   rcu_osci_stab_wait(RCU_IRC8M);
-
-  /* reset CFG0 register */
-  RCU_CFG0 &= ~(RCU_CFG0_SCS | RCU_CFG0_AHBPSC | RCU_CFG0_APB1PSC | RCU_CFG0_APB2PSC | RCU_CFG0_ADCPSC | RCU_CFG0_PLLSEL | RCU_CFG0_PREDV0_LSB | RCU_CFG0_PLLMF | RCU_CFG0_USBFSPSC | RCU_CFG0_CKOUT0SEL
-                | RCU_CFG0_ADCPSC_2 | RCU_CFG0_PLLMF_4);
   /* reset CTL register */
   RCU_CTL &= ~(RCU_CTL_HXTALEN | RCU_CTL_CKMEN | RCU_CTL_PLLEN);
   RCU_CTL &= ~RCU_CTL_HXTALBPS;
   RCU_CTL &= ~(RCU_CTL_PLL1EN | RCU_CTL_PLL2EN);
+  /* reset CFG0 register */
+  RCU_CFG0 &= ~(RCU_CFG0_SCS | RCU_CFG0_AHBPSC | RCU_CFG0_APB1PSC | RCU_CFG0_APB2PSC | RCU_CFG0_ADCPSC | RCU_CFG0_PLLSEL | RCU_CFG0_PREDV0_LSB | RCU_CFG0_PLLMF | RCU_CFG0_USBFSPSC | RCU_CFG0_CKOUT0SEL
+                | RCU_CFG0_ADCPSC_2 | RCU_CFG0_PLLMF_4);
   /* reset INT and CFG1 register */
   RCU_INT = 0x00ff0000U;
   RCU_CFG1 &= ~(RCU_CFG1_PREDV0 | RCU_CFG1_PREDV1 | RCU_CFG1_PLL1MF | RCU_CFG1_PLL2MF | RCU_CFG1_PREDV0SEL | RCU_CFG1_I2S1SEL | RCU_CFG1_I2S2SEL);

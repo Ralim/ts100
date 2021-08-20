@@ -1,12 +1,13 @@
 /*!
-    \file  gd32vf103_i2c.h
-    \brief definitions for the I2C
+    \file    gd32vf103_i2c.h
+    \brief   definitions for the I2C
 
-    \version 2019-6-5, V1.0.0, firmware for GD32VF103
+    \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -36,8 +37,6 @@ OF SUCH DAMAGE.
 #define GD32VF103_I2C_H
 
 #include "gd32vf103.h"
-#include "gd32vf103_dbg.h"
-#include "gd32vf103_rcu.h"
 
 /* I2Cx(x=0,1) definitions */
 #define I2C0 I2C_BASE                 /*!< I2C0 base address */
@@ -53,7 +52,7 @@ OF SUCH DAMAGE.
 #define I2C_STAT1(i2cx)  REG32((i2cx) + 0x18U) /*!< I2C transfer status register */
 #define I2C_CKCFG(i2cx)  REG32((i2cx) + 0x1CU) /*!< I2C clock configure register */
 #define I2C_RT(i2cx)     REG32((i2cx) + 0x20U) /*!< I2C rise time register */
-
+#define I2C_FMPCFG(i2cx) REG32((i2cx) + 0x90U) /*!< I2C fast-mode-plus configure register */
 /* bits definitions */
 /* I2Cx_CTL0 */
 #define I2C_CTL0_I2CEN    BIT(0)  /*!< peripheral enable */
@@ -125,6 +124,9 @@ OF SUCH DAMAGE.
 
 /* I2Cx_RT */
 #define I2C_RT_RISETIME BITS(0, 5) /*!< maximum rise time in fast/standard mode (Master mode) */
+
+/* I2Cx_FMPCFG */
+#define I2C_FMPCFG_FMPEN BIT(0) /*!< fast mode plus enable bit */
 
 /* constants definitions */
 /* define the I2C bit position and its register index offset */
@@ -286,8 +288,6 @@ void i2c_ack_config(uint32_t i2c_periph, uint32_t ack);
 void i2c_ackpos_config(uint32_t i2c_periph, uint32_t pos);
 /* master sends slave address */
 void i2c_master_addressing(uint32_t i2c_periph, uint32_t addr, uint32_t trandirection);
-/* configure I2C saddress1 */
-void i2c_saddr1_config(uint32_t i2c_periph, uint32_t addr);
 /* enable dual-address mode */
 void i2c_dualaddr_enable(uint32_t i2c_periph, uint32_t dualaddr);
 /* disable dual-address mode */

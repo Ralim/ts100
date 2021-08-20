@@ -608,6 +608,118 @@ extern "C" {
 #define DCAUSE_FAULT_STORE_PMP  0x1
 #define DCAUSE_FAULT_STORE_INST 0x2
 
+#define read_fpu(reg)                                \
+  ({                                                 \
+    unsigned long __tmp;                             \
+    asm volatile("fmv.x.w %0, " #reg : "=r"(__tmp)); \
+    __tmp;                                           \
+  })
+
+#define write_fpu(reg, val)                                     \
+  ({                                                            \
+    if (__builtin_constant_p(val) && (unsigned long)(val) < 32) \
+      asm volatile("fmv.w.x " #reg ", %0" ::"i"(val));          \
+    else                                                        \
+      asm volatile("fmv.w.x " #reg ", %0" ::"r"(val));          \
+  })
+
+#define read_csr(reg)                             \
+  ({                                              \
+    unsigned long __tmp;                          \
+    asm volatile("csrr %0, " #reg : "=r"(__tmp)); \
+    __tmp;                                        \
+  })
+
+#define write_csr(reg, val)                                     \
+  ({                                                            \
+    if (__builtin_constant_p(val) && (unsigned long)(val) < 32) \
+      asm volatile("csrw " #reg ", %0" ::"i"(val));             \
+    else                                                        \
+      asm volatile("csrw " #reg ", %0" ::"r"(val));             \
+  })
+
+#define swap_csr(reg, val)                                             \
+  ({                                                                   \
+    unsigned long __tmp;                                               \
+    if (__builtin_constant_p(val) && (unsigned long)(val) < 32)        \
+      asm volatile("csrrw %0, " #reg ", %1" : "=r"(__tmp) : "i"(val)); \
+    else                                                               \
+      asm volatile("csrrw %0, " #reg ", %1" : "=r"(__tmp) : "r"(val)); \
+    __tmp;                                                             \
+  })
+
+#define set_csr(reg, bit)                                              \
+  ({                                                                   \
+    unsigned long __tmp;                                               \
+    if (__builtin_constant_p(bit) && (unsigned long)(bit) < 32)        \
+      asm volatile("csrrs %0, " #reg ", %1" : "=r"(__tmp) : "i"(bit)); \
+    else                                                               \
+      asm volatile("csrrs %0, " #reg ", %1" : "=r"(__tmp) : "r"(bit)); \
+    __tmp;                                                             \
+  })
+
+#define clear_csr(reg, bit)                                            \
+  ({                                                                   \
+    unsigned long __tmp;                                               \
+    if (__builtin_constant_p(bit) && (unsigned long)(bit) < 32)        \
+      asm volatile("csrrc %0, " #reg ", %1" : "=r"(__tmp) : "i"(bit)); \
+    else                                                               \
+      asm volatile("csrrc %0, " #reg ", %1" : "=r"(__tmp) : "r"(bit)); \
+    __tmp;                                                             \
+  })
+
+#define rdtime()    read_csr(time)
+#define rdcycle()   read_csr(cycle)
+#define rdinstret() read_csr(instret)
+
+#define ECLICINTCTLBITS 4
+
+/*ECLIC memory map */
+/* Offset */
+/* 0x0000       1B          RW        ecliccfg */
+#define ECLIC_CFG_OFFSET 0x0
+/*  0x0004       4B          R         eclicinfo */
+#define ECLIC_INFO_OFFSET 0x4
+/*  0x000B       1B          RW        mintthresh */
+#define ECLIC_MTH_OFFSET 0xB
+
+/* 0x1000+4*i   1B/input    RW        eclicintip[i] */
+#define ECLIC_INT_IP_OFFSET _AC(0x1000, UL)
+/* 0x1001+4*i   1B/input    RW        eclicintie[i] */
+#define ECLIC_INT_IE_OFFSET _AC(0x1001, UL)
+/* 0x1002+4*i   1B/input    RW        eclicintattr[i]*/
+#define ECLIC_INT_ATTR_OFFSET _AC(0x1002, UL)
+
+#define ECLIC_INT_ATTR_SHV        0x01
+#define ECLIC_INT_ATTR_TRIG_LEVEL 0x00
+#define ECLIC_INT_ATTR_TRIG_EDGE  0x02
+#define ECLIC_INT_ATTR_TRIG_POS   0x00
+#define ECLIC_INT_ATTR_TRIG_NEG   0x04
+
+/* 0x1003+4*i   1B/input    RW        eclicintctl[i] */
+#define ECLIC_INT_CTRL_OFFSET _AC(0x1003, UL)
+
+#define ECLIC_ADDR_BASE 0xd2000000
+
+#define ECLIC_CFG_NLBITS_MASK _AC(0x1E, UL)
+#define ECLIC_CFG_NLBITS_LSB  (1u)
+
+#define MSIP_HANDLER  eclic_msip_handler
+#define MTIME_HANDLER eclic_mtip_handler
+#define BWEI_HANDLER  eclic_bwei_handler
+#define PMOVI_HANDLER eclic_pmovi_handler
+
+#define TIMER_MSIP          0xFFC
+#define TIMER_MSIP_size     0x4
+#define TIMER_MTIMECMP      0x8
+#define TIMER_MTIMECMP_size 0x8
+#define TIMER_MTIME         0x0
+#define TIMER_MTIME_size    0x8
+
+#define TIMER_CTRL_ADDR   0xd1000000
+#define TIMER_REG(offset) _REG32(TIMER_CTRL_ADDR, offset)
+#define TIMER_FREQ        ((uint32_t)SystemCoreClock / 4)
+
 /** @} */ /** End of Doxygen Group NMSIS_Core_CSR_Encoding **/
 
 #ifdef __cplusplus

@@ -48,7 +48,7 @@ int main(void) {
   osThreadStaticDef(PIDTask, startPIDTask, osPriorityRealtime, 0, PIDTaskStackSize, PIDTaskBuffer, &PIDTaskControlBlock);
   PIDTaskHandle = osThreadCreate(osThread(PIDTask), NULL);
 
-  /* definition and creation of POWTask - Power management for QC */
+  /* definition and creation of POWTask - Power management for QC / PD */
   osThreadStaticDef(POWTask, startPOWTask, osPriorityAboveNormal, 0, POWTaskStackSize, POWTaskBuffer, &POWTaskControlBlock);
   POWTaskHandle = osThreadCreate(osThread(POWTask), NULL);
 

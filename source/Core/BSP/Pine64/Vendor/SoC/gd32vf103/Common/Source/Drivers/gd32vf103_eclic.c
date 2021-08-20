@@ -1,12 +1,13 @@
 /*!
-    \file  gd32vf103_eclic.c
-    \brief ECLIC(Enhancement Core-Local Interrupt Controller) driver
+    \file    gd32vf103_eclic.c
+    \brief   ECLIC(Enhancement Core-Local Interrupt Controller) driver
 
-    \version 2019-06-05, V1.0.1, firmware for GD32VF103
+    \version 2019-06-05, V1.0.0, firmware for GD32VF103
+    \version 2020-08-04, V1.1.0, firmware for GD32VF103
 */
 
 /*
-    Copyright (c) 2019, GigaDevice Semiconductor Inc.
+    Copyright (c) 2020, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -33,9 +34,34 @@ OF SUCH DAMAGE.
 */
 
 #include "gd32vf103_eclic.h"
+#include "gd32vf103_rcu.h"
+#include "n200_func.h"
 #include "riscv_encoding.h"
-#define REG_DBGMCU2   ((uint32_t)0xE0042008)
-#define REG_DBGMCU2EN ((uint32_t)0xE004200C)
+
+#define REG_DBGMCU2   ((uint32_t)0xE0042008U)
+#define REG_DBGMCU2EN ((uint32_t)0xE004200CU)
+
+/*!
+    \brief      enable the global interrupt
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void eclic_global_interrupt_enable(void) {
+  /* set machine interrupt enable bit */
+  set_csr(mstatus, MSTATUS_MIE);
+}
+
+/*!
+    \brief      disable the global interrupt
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void eclic_global_interrupt_disable(void) {
+  /* clear machine interrupt enable bit */
+  clear_csr(mstatus, MSTATUS_MIE);
+}
 
 /*!
     \brief      set the priority group
@@ -48,7 +74,7 @@ OF SUCH DAMAGE.
     \param[out] none
     \retval     none
 */
-void eclic_priority_group_set(uint32_t prigroup) { ECLIC_SetCfgNlbits(prigroup); }
+void eclic_priority_group_set(uint8_t prigroup) { eclic_set_nlbits(prigroup); }
 
 /*!
     \brief      enable the interrupt request
@@ -59,9 +85,9 @@ void eclic_priority_group_set(uint32_t prigroup) { ECLIC_SetCfgNlbits(prigroup);
     \retval     none
 */
 void eclic_irq_enable(uint32_t source, uint8_t level, uint8_t priority) {
-  ECLIC_EnableIRQ(source);
-  ECLIC_SetLevelIRQ(source, level);
-  ECLIC_SetPriorityIRQ(source, priority);
+  eclic_enable_interrupt(source);
+  eclic_set_irq_lvl_abs(source, level);
+  eclic_set_irq_priority(source, priority);
 }
 
 /*!
@@ -70,7 +96,7 @@ void eclic_irq_enable(uint32_t source, uint8_t level, uint8_t priority) {
     \param[out] none
     \retval     none
 */
-void eclic_irq_disable(uint32_t source) { ECLIC_DisableIRQ(source); }
+void eclic_irq_disable(uint32_t source) { eclic_disable_interrupt(source); }
 
 /*!
     \brief      reset system
@@ -79,6 +105,14 @@ void eclic_irq_disable(uint32_t source) { ECLIC_DisableIRQ(source); }
     \retval     none
 */
 void eclic_system_reset(void) {
-  REG32(REG_DBGMCU2EN) = 0x4b5a6978;
-  REG32(REG_DBGMCU2)   = 0x1;
+  REG32(REG_DBGMCU2EN) = (uint32_t)0x4b5a6978U;
+  REG32(REG_DBGMCU2)   = (uint32_t)0x1U;
 }
+
+/*!
+    \brief      send event(SEV)
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void eclic_send_event(void) { set_csr(0x812U, 0x1U); }
