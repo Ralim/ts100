@@ -84,6 +84,10 @@ static bool settings_displayPowerPulseWait(void);
 static bool settings_setPowerPulseWait(void);
 static bool settings_displayPowerPulseDuration(void);
 static bool settings_setPowerPulseDuration(void);
+static bool settings_displayBrightnessLevel(void);
+static bool settings_setBrightnessLevel(void);
+static bool settings_displayInvertColor(void);
+static bool settings_setInvertColor(void);
 #ifdef HALL_SENSOR
 static bool settings_displayHallEffect(void);
 static bool settings_setHallEffect(void);
@@ -217,6 +221,8 @@ const menuitem UIMenu[] = {
     {SETTINGS_DESC(SettingsItemIndex::ReverseButtonTempChange), settings_setReverseButtonTempChangeEnabled, settings_displayReverseButtonTempChangeEnabled}, /* Reverse Temp change buttons + - */
     {SETTINGS_DESC(SettingsItemIndex::AnimSpeed), settings_setAnimationSpeed, settings_displayAnimationSpeed},                                               /*Animation Speed adjustment */
     {SETTINGS_DESC(SettingsItemIndex::AnimLoop), settings_setAnimationLoop, settings_displayAnimationLoop},                                                  /*Animation Loop switch */
+    {0, settings_setBrightnessLevel, settings_displayBrightnessLevel},                                                                                       /*Brightness Level*/
+    {0, settings_setInvertColor, settings_displayInvertColor},                                                                                               /*Invert screen colour*/
     {0, nullptr, nullptr}                                                                                                                                    // end of menu marker. DO NOT REMOVE
 };
 const menuitem PowerSavingMenu[] = {
@@ -964,6 +970,41 @@ static bool settings_displayPowerPulseDuration(void) {
   } else {
     return true; // skip
   }
+}
+
+static uint8_t brightness = 0x00;
+
+static bool settings_displayBrightnessLevel(void) {
+  OLED::drawArea(0, 0, 16, 16, brightnessIcon);
+  OLED::setCursor(5 * FONT_12_WIDTH - 2, 0);
+  OLED::printNumber(brightness, 3, FontStyle::LARGE);
+  return false;
+}
+
+static bool settings_setBrightnessLevel(void) {
+  if (brightness > (0xFF - 0x08 + 1)) {
+    brightness = 0;
+  } else if (brightness == 0) {
+    brightness = 7;
+  } else {
+    brightness += 0x08;
+  }
+  OLED::setContrast(brightness);
+  return brightness == 0xFF;
+}
+
+static bool invertColor = false;
+
+static bool settings_displayInvertColor(void) {
+  OLED::drawArea(0, 0, 24, 16, invertDisplayIcon);
+  OLED::setCursor(7 * FONT_12_WIDTH - 2, 0);
+  OLED::drawCheckbox(invertColor);
+  return false;
+}
+static bool settings_setInvertColor(void) {
+  invertColor = !invertColor;
+  OLED::setInverseDisplay(invertColor);
+  return invertColor;
 }
 
 #ifdef HALL_SENSOR

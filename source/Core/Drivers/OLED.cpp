@@ -46,7 +46,7 @@ I2C_CLASS::I2C_REG OLED_Setup_Array[] = {
     {0x80, 0xDA, 0}, /*Set VCOM Pins hardware config*/
     {0x80, 0x02, 0}, /*Combination 2*/
     {0x80, 0x81, 0}, /*Contrast*/
-    {0x80, 0x33, 0}, /*^51*/
+    {0x80, 0x00, 0}, /*^0*/
     {0x80, 0xD9, 0}, /*Set pre-charge period*/
     {0x80, 0xF1, 0}, /*Pre charge period*/
     {0x80, 0xDB, 0}, /*Adjust VCOMH regulator ouput*/
@@ -360,6 +360,17 @@ void OLED::setRotation(bool leftHanded) {
                                                   // mode as driver ram is 128 wide
   screenBuffer[7] = inLeftHandedMode ? 95 : 0x7F; // End address of the ram segment we are writing to (96 wide)
   screenBuffer[9] = inLeftHandedMode ? 0xC8 : 0xC0;
+}
+
+void OLED::setContrast(uint8_t contrast) {
+  OLED_Setup_Array[15].val = contrast;
+  I2C_CLASS::writeRegistersBulk(DEVICEADDR_OLED, &OLED_Setup_Array[14], 2);
+}
+
+void OLED::setInverseDisplay(bool inverse) {
+  uint8_t normalInverseCmd = inverse ? 0xA7 : 0xA6;
+  OLED_Setup_Array[21].val = normalInverseCmd;
+  I2C_CLASS::I2C_RegisterWrite(DEVICEADDR_OLED, 0x80, normalInverseCmd);
 }
 
 // print a string to the current cursor location
