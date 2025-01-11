@@ -159,9 +159,9 @@ OperatingMode gui_solderingProfileMode(const ButtonState buttons, guiContext *cx
     setBuzzer(false);
     return OperatingMode::HomeScreen;
   }
-  if (heaterThermalRunaway) {
-    currentTempTargetDegC = 0; // heater control off
-    heaterThermalRunaway  = false;
+  if (heaterThermalRunawayCounter > 8) {
+    currentTempTargetDegC       = 0; // heater control off
+    heaterThermalRunawayCounter = 0;
     return OperatingMode::ThermalRunaway;
   }
 
