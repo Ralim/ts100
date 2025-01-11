@@ -249,7 +249,7 @@ void detectThermalRunaway(const TemperatureType_t currentTipTempInC, const uint3
   static bool haveSeenDelta = false;
 
   // Check for readings being pegged at the top of the ADC while the heater is off
-  if (!thisCycleIsHeating && (getTipRawTemp(0) > (0x7FFF - 16))) {
+  if (!thisCycleIsHeating && (getTipRawTemp(0) > (ADC_MAX_READING - 8))) {
     heaterThermalRunaway = true;
   }
 
