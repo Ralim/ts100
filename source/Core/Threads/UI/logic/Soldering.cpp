@@ -161,11 +161,11 @@ OperatingMode gui_solderingMode(const ButtonState buttons, guiContext *cxt) {
     return OperatingMode::Sleeping;
   }
 
-  if (heaterThermalRunaway) {
-    currentTempTargetDegC = 0; // heater control off
-    heaterThermalRunaway  = false;
-    cxt->transitionMode   = TransitionAnimation::Right;
-    return OperatingMode::ThermalRunaway;
-  }
+  //  if (heaterThermalRunaway) {
+  //    currentTempTargetDegC = 0; // heater control off
+  //    heaterThermalRunaway  = false;
+  //    cxt->transitionMode   = TransitionAnimation::Right;
+  //    return OperatingMode::ThermalRunaway;
+  //  }
   return handleSolderingButtons(buttons, cxt);
 }
