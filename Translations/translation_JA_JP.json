@@ -81,7 +81,8 @@
     "SettingStartSleepChar": "待",
     "SettingStartSleepOffChar": "室",
     "SettingLockBoostChar": "ブ",
-    "SettingLockFullChar": "全"
+    "SettingLockFullChar": "全",
+    "SettingLockTempChar": "T"
   },
   "menuGroups": {
     "PowerMenu": {
