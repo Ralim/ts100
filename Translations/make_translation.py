@@ -163,7 +163,7 @@ def get_debug_menu() -> List[str]:
         "UpTime ",
         "Move   ",
         "Tip Res",
-        "Tip R  ",
+        "Tip uV ",
         "Tip O  ",
         "HW G   ",
         "HW M   ",

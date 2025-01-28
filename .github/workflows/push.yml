@@ -26,6 +26,7 @@ jobs:
             "S60",
             "S60P",
             "T55",
+            "S99",
             "TS101",
           ]
       fail-fast: true
