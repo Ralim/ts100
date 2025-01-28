@@ -9,7 +9,7 @@
 #include "history.hpp"
 #include "ui_drawing.hpp"
 
-extern bool heaterThermalRunaway;
+extern uint8_t heaterThermalRunawayCounter;
 
 bool checkExitSoldering(void) {
 #ifdef POW_DC
