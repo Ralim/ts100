@@ -275,6 +275,10 @@
       "displayText": "Obrni\ntipki + -?",
       "description": "Zamenjaj funkciji gumbov."
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Anim.\nspeed",
       "description": "Pace of icon animations in menu (P=slow | M=medium | H=fast)"

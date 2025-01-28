@@ -275,6 +275,10 @@
       "displayText": "Αντιστροφή\nπλήκτρων + -",
       "description": "Αντιστροφή διάταξης πλήκτρων στη ρύθμιση θερμοκρασίας"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Ταχύτητα\nκιν. εικονιδ.",
       "description": "Ρυθμός κίνησης εικονιδίων στο μενού (Α=αργός | Μ=μέτριος | Γ=γρήγορος)"

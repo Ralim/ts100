@@ -275,6 +275,10 @@
       "displayText": "Otočenie\ntlačidiel +/-",
       "description": "Prehodenie tlačidiel na nastavovanie teploty"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Rýchlosť\nanimácií",
       "description": "Rýchlosť animácií ikoniek v menu (P=pomaly | S=stredne | R=rýchlo)"

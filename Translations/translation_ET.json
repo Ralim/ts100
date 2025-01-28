@@ -275,6 +275,10 @@
       "displayText": "Vaheta\n+ - nupud",
       "description": "Temperatuurinuppude asukohtade vahetus"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Anim.\nkiirus",
       "description": "Menüüikoonide animatsiooni kiirus (A=aeglane | K=keskmine | T=tempokas)"

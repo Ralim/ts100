@@ -275,6 +275,10 @@
       "displayText": "Zamjena\n+ - tipki",
       "description": "Zamjenjuje funkciju gornje i donje tipke za podešavanje temperature"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Brzina\nanimacije",
       "description": "Brzina animacije ikona u menijima (S=sporo | M=srednje | B=brzo)"

@@ -275,6 +275,10 @@
       "displayText": "Wissel\n+ - knoppen",
       "description": "Wissel de knoppen voor temperatuur controle"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Anim.\nsnelheid",
       "description": "Snelheid van de icoon animaties in het menu (T=sloom | M=middel | S=snel)"

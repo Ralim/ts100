@@ -473,6 +473,12 @@
       "maxLen2": 15,
       "description": "Swaps which button increments and decrements on temperature change screens."
     },
+	{
+      "id": "ReverseButtonNav",
+      "maxLen": 6,
+      "maxLen2": 15,
+      "description": "Swaps which button are used as Select and which as Scroll/Go-back on menu screens."
+    },
     {
       "id": "AnimSpeed",
       "maxLen": 6,

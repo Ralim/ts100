@@ -275,6 +275,10 @@
       "displayText": "Prohodit\ntl. +-?",
       "description": "Prohodit tlačítka pro změnu teploty"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Anim.\nrychlost",
       "description": "Tempo animace ikon v menu (P=pomalu | S=středně | R=rychle)"

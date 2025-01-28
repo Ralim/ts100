@@ -275,6 +275,10 @@
       "displayText": "+- Tasten\numkehren",
       "description": "Tastenbelegung zur Temperaturänderung umkehren"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Anim.\nGeschw.",
       "description": "Geschwindigkeit der Icon-Animationen im Menü (L=langsam | M=mittel | S=schnell)"

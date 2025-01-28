@@ -275,6 +275,10 @@
       "displayText": "Invertir\nbotones +/-",
       "description": "Invertir botones de ajuste de temperatura"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Anim.\nvelocidad",
       "description": "Velocidad de animaciones de iconos en el menú (L=baja | M=media | R=alta)"

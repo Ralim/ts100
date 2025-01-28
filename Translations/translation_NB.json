@@ -275,6 +275,10 @@
       "displayText": "Bytt\n+ - kn.",
       "description": "Bytt om på knappene for å stille temperatur"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Anim.\nhastighet",
       "description": "Hastigheten til animasjonene i menyen (S=slow | M=medium | F=fast)"

@@ -43,8 +43,11 @@ guiContext    context;                                                  // Conte
 OperatingMode handle_post_init_state();
 OperatingMode guiHandleDraw(void) {
   OLED::clearScreen(); // Clear ready for render pass
+  bool d = getSettingValue(SettingsOptions::ReverseButtonNavEnabled);
+  bool e = getSettingValue(SettingsOptions::ReverseButtonTempChangeEnabled);
+  bool f = currentOperatingMode == OperatingMode::TemperatureAdjust;
   // Read button state
-  ButtonState buttons = getButtonState();
+  ButtonState buttons = getButtonState((e && f) || (d && !e && !f) || (d && e && !f));
   // Enforce screen on if buttons pressed, movement, hot tip etc
   if (buttons != BUTTON_NONE) {
     OLED::setDisplayState(OLED::DisplayState::ON);

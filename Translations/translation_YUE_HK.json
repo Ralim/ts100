@@ -275,6 +275,10 @@
       "displayText": "反轉加減掣",
       "description": "反轉調校温度時加減掣嘅方向"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "動畫速度",
       "description": "功能表圖示動畫嘅速度 <慢=慢速 | 中=中速 | 快=快速>"

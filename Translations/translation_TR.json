@@ -275,6 +275,10 @@
       "displayText": "Düğme Yerleri\nRotasyonu",
       "description": "\"Düğme Yerleri Rotasyonu\" Sıcaklık ayar düğmelerinin yerini değiştirin"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Animasyon\nHızı",
       "description": "Menüdeki simge animasyonlarının hızı (Y=Yavaş | O=Orta | H=Hızlı)"

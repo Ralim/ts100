@@ -17,7 +17,7 @@ bool shouldShutdown(void) {
       }
     }
   }
-  if (getButtonState() == BUTTON_B_LONG) { // allow also if back button is pressed long
+  if (getButtonState(getSettingValue(SettingsOptions::ReverseButtonNavEnabled)) == BUTTON_B_LONG) { // allow also if back button is pressed long
     return true;
   }
   return false;

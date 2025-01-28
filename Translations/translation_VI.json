@@ -275,6 +275,10 @@
       "displayText": "Đao nguoc\nnút + -",
       "description": "Đao nguoc chuc năng các nút đieu chinh nhiet đo"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Toc đo\nhoat anh",
       "description": "Toc đo cua hoat anh menu (S=cham | M=trung bình | F=nhanh)"

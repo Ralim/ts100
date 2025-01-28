@@ -272,8 +272,12 @@
       "description": "Imposta la velocità di scorrimento del testo [L: lenta; V: veloce]"
     },
     "ReverseButtonTempChange": {
-      "displayText": "Inversione\ntasti",
+      "displayText": "Inversione\ntasti +/-",
       "description": "Inverti i tasti per aumentare o diminuire la temperatura della punta"
+    },
+	"ReverseButtonNav": {
+      "displayText": "Inversione\ntasti A/B",
+      "description": "Reverse assignment of buttons for menu navigation"
     },
     "AnimSpeed": {
       "displayText": "Velocità\nanimazioni",

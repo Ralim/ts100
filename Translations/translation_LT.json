@@ -275,6 +275,10 @@
       "displayText": "Sukeisti + -\nmygtukus?",
       "description": "Sukeisti + - temperatūros keitimo mygtukus vietomis"
     },
+	"ReverseButtonNav": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for menu navigation"
+    },
     "AnimSpeed": {
       "displayText": "Animacijų\ngreitis",
       "description": "Paveiksliukų animacijų greitis meniu punktuose (L=Lėtas | V=Vidutinis | G=Greitas)"

@@ -272,8 +272,12 @@
       "description": "Szybkość przewijania tekstu"
     },
     "ReverseButtonTempChange": {
-      "displayText": "Zamień przyc.\n+ -",
+      "displayText": "Zamień przyc.\n+/-",
       "description": "Zamienia działanie przycisków zmiany temperatury grotu"
+    },
+	"ReverseButtonNav": {
+      "displayText": "Zamień przyc.\nA/B",
+      "description": "Zamienia działanie przycisków nawigacyjne menu"
     },
     "AnimSpeed": {
       "displayText": "Prędkosć\nanimacji",
