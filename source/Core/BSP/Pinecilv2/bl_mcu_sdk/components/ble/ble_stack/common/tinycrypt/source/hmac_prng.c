@@ -33,7 +33,7 @@
 #include "hmac_prng.h"
 #include "constants.h"
 #include "hmac.h"
-#include "utils.h"
+#include "utils.hpp"
 
 /*
  * min bytes in the seed string.

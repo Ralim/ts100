@@ -14,6 +14,25 @@ You will need to update the build settings for include paths and point to the ne
 In the `source` folder there is a `Makefile` that can be used to build the repository using command line tools.
 When running the `make` command, specify which model of the device and the language(s) you would like to use.
 
+### Windows (MSYS)
+
+1. Install MSYS from the [official website](https://msys2.org)
+2. Set up prerequisites using
+```
+pacman -S mingw-w64-x86_64-arm-none-eabi-gcc mingw-w64-x86_64-libwinpthread-git python3 python3-pip 
+```
+3. Download and unpack RiscV toolchain from [repository](https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases) into Mingw64 environment location (e.g `C:\msys64\mingw64`) without replacing files
+3. If needed, install OpenOCD or stlink for easy flashing:
+```
+pacman -S mingw-w64-x86_64-openocd
+```
+
+```
+pacman -S mingw-w64-x86_64-stlink
+```
+
+4. Follow steps 3-8 from [macOS section](#macos)
+
 ### macOS
 
 Use the following steps to set up a build environment for IronOS on the command line (in Terminal).

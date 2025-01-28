@@ -33,7 +33,7 @@
 #include "cmac_mode.h"
 #include "aes.h"
 #include "constants.h"
-#include "utils.h"
+#include "utils.hpp"
 
 /* max number of calls until change the key (2^48).*/
 static const uint64_t MAX_CALLS = ((uint64_t)1 << 48);

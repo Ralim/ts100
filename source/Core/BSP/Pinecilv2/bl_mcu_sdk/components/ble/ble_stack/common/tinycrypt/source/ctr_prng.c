@@ -29,7 +29,7 @@
 
 #include "ctr_prng.h"
 #include "constants.h"
-#include "utils.h"
+#include "utils.hpp"
 #include <string.h>
 
 /*

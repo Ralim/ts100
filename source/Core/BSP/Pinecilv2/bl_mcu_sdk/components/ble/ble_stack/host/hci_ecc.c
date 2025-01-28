@@ -15,7 +15,7 @@
 #include <ecc_dh.h>
 #include <misc/byteorder.h>
 #include <misc/stack.h>
-#include <utils.h>
+#include <utils.hpp>
 #include <zephyr.h>
 
 #include <../include/bluetooth/crypto.h>

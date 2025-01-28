@@ -19,7 +19,7 @@
 
 #if defined(CONFIG_BT_GATT_CACHING)
 #include <constants.h>
-#include <utils.h>
+#include <utils.hpp>
 
 #include <cmac_mode.h>
 

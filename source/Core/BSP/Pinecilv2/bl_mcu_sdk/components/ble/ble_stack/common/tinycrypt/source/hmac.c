@@ -32,7 +32,7 @@
 
 #include "hmac.h"
 #include "constants.h"
-#include "utils.h"
+#include "utils.hpp"
 
 static void rekey(uint8_t *key, const uint8_t *new_key, unsigned int key_size) {
   const uint8_t inner_pad = (uint8_t)0x36;

@@ -1,4 +1,4 @@
-/* utils.h - TinyCrypt interface to platform-dependent run-time operations */
+/* utils.hpp - TinyCrypt interface to platform-dependent run-time operations */
 
 /*
  *  Copyright (C) 2017 by Intel Corporation, All Rights Reserved.

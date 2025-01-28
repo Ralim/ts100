@@ -32,7 +32,7 @@
 
 #include "ctr_mode.h"
 #include "constants.h"
-#include "utils.h"
+#include "utils.hpp"
 
 int tc_ctr_mode(uint8_t *out, unsigned int outlen, const uint8_t *in, unsigned int inlen, uint8_t *ctr, const TCAesKeySched_t sched) {
   uint8_t      buffer[TC_AES_BLOCK_SIZE];
