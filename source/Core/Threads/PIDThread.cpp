@@ -22,12 +22,12 @@
 #endif
 #endif
 
-static TickType_t          powerPulseWaitUnit      = 25 * TICKS_100MS;      // 2.5 s
-static TickType_t          powerPulseDurationUnit  = (5 * TICKS_100MS) / 2; // 250 ms
-TaskHandle_t               pidTaskNotification     = NULL;
-volatile TemperatureType_t currentTempTargetDegC   = 0; // Current temperature target in C
-int32_t                    powerSupplyWattageLimit = 0;
-bool                       heaterThermalRunaway    = false;
+static TickType_t          powerPulseWaitUnit          = 25 * TICKS_100MS;      // 2.5 s
+static TickType_t          powerPulseDurationUnit      = (5 * TICKS_100MS) / 2; // 250 ms
+TaskHandle_t               pidTaskNotification         = NULL;
+volatile TemperatureType_t currentTempTargetDegC       = 0; // Current temperature target in C
+int32_t                    powerSupplyWattageLimit     = 0;
+uint8_t                    heaterThermalRunawayCounter = 0;
 
 static int32_t getPIDResultX10Watts(TemperatureType_t set_point, TemperatureType_t current_value);
 static void    detectThermalRunaway(const TemperatureType_t currentTipTempInC, const uint32_t x10WattsOut);
@@ -71,7 +71,8 @@ void startPIDTask(void const *argument __unused) {
 #endif
 #endif
 
-  int32_t x10WattsOut = 0;
+  int32_t    x10WattsOut             = 0;
+  TickType_t lastThermalRunawayDecay = xTaskGetTickCount();
 
   for (;;) {
     x10WattsOut = 0;
@@ -105,6 +106,12 @@ void startPIDTask(void const *argument __unused) {
 #ifdef DEBUG_UART_OUTPUT
     log_system_state(x10WattsOut);
 #endif
+    if (xTaskGetTickCount() - lastThermalRunawayDecay > TICKS_SECOND) {
+      lastThermalRunawayDecay = xTaskGetTickCount();
+      if (heaterThermalRunawayCounter > 0) {
+        heaterThermalRunawayCounter--;
+      }
+    }
   }
 }
 
@@ -249,8 +256,8 @@ void detectThermalRunaway(const TemperatureType_t currentTipTempInC, const uint3
   static bool haveSeenDelta = false;
 
   // Check for readings being pegged at the top of the ADC while the heater is off
-  if (!thisCycleIsHeating && (getTipRawTemp(0) > (0x7FFF - 16))) {
-    heaterThermalRunaway = true;
+  if (!thisCycleIsHeating && (getTipRawTemp(0) > (ADC_MAX_READING - 8)) && heaterThermalRunawayCounter < 255) {
+    heaterThermalRunawayCounter++;
   }
 
   if (haveSeenDelta) {
@@ -277,8 +284,8 @@ void detectThermalRunaway(const TemperatureType_t currentTipTempInC, const uint3
       TemperatureType_t delta = tipTempMax - tiptempMin;
       haveSeenDelta           = true;
 
-      if (delta < THERMAL_RUNAWAY_TEMP_C) {
-        heaterThermalRunaway = true;
+      if (delta < THERMAL_RUNAWAY_TEMP_C && heaterThermalRunawayCounter < 255) {
+        heaterThermalRunawayCounter++;
       }
     }
   }
@@ -322,7 +329,7 @@ void setOutputx10WattsViaFilters(int32_t x10WattsOut) {
   if (getTipRawTemp(0) > (0x7FFF - 32)) {
     x10WattsOut = 0;
   }
-  if (heaterThermalRunaway) {
+  if (heaterThermalRunawayCounter > 8) {
     x10WattsOut = 0;
   }
 #ifdef SLEW_LIMIT
