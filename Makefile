@@ -52,7 +52,7 @@ DOCKER_CMD=$(DOCKER_BIN)  -f $(DOCKER_YML)  run  --rm  builder
 MKDOCS_YML=$(CURDIR)/scripts/IronOS-mkdocs.yml
 
 # supported models
-MODELS=TS100 TS80 TS80P Pinecil MHP30 Pinecilv2 S60 TS101 S60P T55 # target names & dir names
+MODELS=TS100 TS80 TS80P Pinecil MHP30 Pinecilv2 S60 TS101 S60P T55 S99 # target names & dir names
 MODELS_ML=Pinecil  Pinecilv2 # target names
 MODELS_MULTILANG=Pinecil_multi-lang  Pinecilv2_multi-lang # dir names
 

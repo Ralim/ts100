@@ -26,7 +26,7 @@ static void displayInputMinVRange(void);
 static void displayQCInputV(void);
 #endif /* POW_QC */
 
-#ifdef POW_PD
+#if defined(POW_PD) || POW_PD_EXT == 2
 static void displayPDNegTimeout(void);
 static void displayUSBPDMode(void);
 #endif /* POW_PD */
@@ -123,9 +123,9 @@ static bool showSolderingTipType(void);
 
 // Menu functions
 
-#if defined(POW_DC) || defined(POW_QC) || defined(POW_PD)
+#if defined(POW_DC) || defined(POW_QC) || defined(POW_PD) || defined(POW_PD) || POW_PD_EXT == 2
 static void displayPowerMenu(void);
-#endif /* POW_DC or POW_QC */
+#endif /* POW_DC or POW_QC or POW_PD or POD_PD_EXT 2*/
 
 static void displaySolderingMenu(void);
 static void displayPowerSavingMenu(void);
@@ -236,7 +236,7 @@ const menuitem rootSettingsMenu[] {
   /* ^^^^ end of menu marker. DO NOT REMOVE ^^^^ */
 };
 
-#if defined(POW_DC) || defined(POW_QC) || defined(POW_PD)
+#if defined(POW_DC) || defined(POW_QC) || defined(POW_PD) || POW_PD_EXT == 2
 const menuitem powerMenu[] = {
   /*
    * Power Source
@@ -255,7 +255,7 @@ const menuitem powerMenu[] = {
   /* Voltage input */
   {SETTINGS_DESC(SettingsItemIndex::QCMaxVoltage), nullptr, displayQCInputV, nullptr, SettingsOptions::QCIdealVoltage, SettingsItemIndex::QCMaxVoltage, 4},
 #endif
-#ifdef POW_PD
+#if defined(POW_PD) || POW_PD_EXT == 2
   /* PD timeout setup */
   {SETTINGS_DESC(SettingsItemIndex::PDNegTimeout), nullptr, displayPDNegTimeout, nullptr, SettingsOptions::PDNegTimeout, SettingsItemIndex::PDNegTimeout, 6},
   /* Toggle PPS & EPR */
@@ -451,7 +451,7 @@ const menuitem advancedMenu[] = {
 /* clang-format on */
 
 const menuitem *subSettingsMenus[] {
-#if defined(POW_DC) || defined(POW_QC) || defined(POW_PD)
+#if defined(POW_DC) || defined(POW_QC) || defined(POW_PD) || POW_PD_EXT == 2
   powerMenu,
 #endif
       solderingMenu, PowerSavingMenu, UIMenu, advancedMenu,
@@ -536,7 +536,7 @@ static void displayQCInputV(void) {
 
 #endif /* POW_QC */
 
-#ifdef POW_PD /* POW_PD */
+#if defined(POW_PD) || POW_PD_EXT == 2 /* POW_PD */
 
 static void displayPDNegTimeout(void) {
   auto value = getSettingValue(SettingsOptions::PDNegTimeout);

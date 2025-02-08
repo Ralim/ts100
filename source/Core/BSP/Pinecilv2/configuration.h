@@ -148,6 +148,7 @@
 #define POW_PD                     1                         // Supported features
 #define USB_PD_EPR_WATTAGE         140                       // USB PD EPR Wattage
 #define POW_PD_EXT                 0                         // Future-proof macro for other models with other PD modes
+#define USB_PD_TIMEOUT             20                        // Default Timeout for USB-PD Protocol negotiation in x100ms
 #define POW_QC                     1                         // Supported features
 #define POW_DC                     1                         // Supported features
 #define POW_QC_20V                 1                         // Supported features

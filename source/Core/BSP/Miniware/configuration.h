@@ -132,6 +132,7 @@
 #define ADC_VDD_MV      3300       // ADC max reading millivolts
 
 #define POW_PD_EXT 0
+#define USB_PD_TIMEOUT    20  // Default Timeout for USB-PD Protocol negotiation in x100ms
 
 // Deriving the Voltage div:
 // Vin_max = (3.3*(r1+r2))/(r2)

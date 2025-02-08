@@ -104,7 +104,7 @@ This can be used for checking performance of the movement detection code.
 
 This indicates the tip resistance that the device is currently using. For devices with multiple possible values to choose from (Pinecil V2), the appropriate value is automatically detected at every boot-up. Tip should be installed before boot-up or reading can not be done.
 
-### Tip R
+### Tip uV
 
 This is the raw tip reading in μV. Tip must be installed or reading will be high/inaccurate. At cool, the range of 700-1000 is normal for larger tips and ~1500 for smaller tips (TS80). This is used to evaluate the calibration routines.
 

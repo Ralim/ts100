@@ -23,6 +23,10 @@ extern "C" {
 #include "USBPD.h"
 #include "pd.h"
 #endif
+#if POW_PD_EXT == 2
+#include "FS2711.hpp"
+#include "FS2711_defines.h"
+#endif
 
 enum class OperatingMode {
   StartupLogo=10,        // Showing the startup logo

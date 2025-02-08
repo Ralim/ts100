@@ -54,7 +54,7 @@ typedef struct {
 } SettingConstants;
 
 static const SettingConstants settingsConstants[(int)SettingsOptions::SettingsOptionsLength] = {
-  //{                   min,                               max,         increment,                      default}
+  //{                   min,                                                                   max,         increment,                      default}
     {            MIN_TEMP_C,                                                            MAX_TEMP_F,                 5,               SOLDERING_TEMP}, // SolderingTemp
     {            MIN_TEMP_C,                                                            MAX_TEMP_F,                 5,                          150}, // SleepTemp
     {                     0,                                                                    15,                 1,                   SLEEP_TIME}, // SleepTime
@@ -87,7 +87,7 @@ static const SettingConstants settingsConstants[(int)SettingsOptions::SettingsOp
     {                     0,                                                                     9,                 1,                            0}, // AccelMissingWarningCounter
     {                     0,                                                                     9,                 1,                            0}, // PDMissingWarningCounter
     {                     0,                                                                0xFFFF,                 0,                 41431 /*EN*/}, // UILanguage
-    {                     0,                                                                    50,                 1,                           20}, // PDNegTimeout
+    {                     0,                                                                    50,                 1,               USB_PD_TIMEOUT}, // PDNegTimeout
     {                     0,                                                                     1,                 1,                            0}, // OLEDInversion
     {        MIN_BRIGHTNESS,                                                        MAX_BRIGHTNESS,   BRIGHTNESS_STEP,           DEFAULT_BRIGHTNESS}, // OLEDBrightness
     {                     0,                                                                     6,                 1,                            1}, // LOGOTime

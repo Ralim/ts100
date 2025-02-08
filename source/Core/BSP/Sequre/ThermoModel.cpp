@@ -83,3 +83,10 @@ TemperatureType_t TipThermoModel::convertuVToDegC(uint32_t tipuVDelta) {
 #ifdef TEMP_uV_LOOKUP_S60
 TemperatureType_t TipThermoModel::convertuVToDegC(uint32_t tipuVDelta) { return (tipuVDelta * 50) / 485; }
 #endif // TEMP_uV_LOOKUP_S60
+
+#ifdef TEMP_uV_LOOKUP_S99
+// 42.85 uV / K -> 1/42.85 K/uV = 20/857
+// TemperatureType_t TipThermoModel::convertuVToDegC(uint32_t tipuVDelta) { return (tipuVDelta * 20) / 857; }
+// Measurement is probably with heating element in series, thats why the reading differs from the approx 42.85 uV/K
+TemperatureType_t TipThermoModel::convertuVToDegC(uint32_t tipuVDelta) { return (tipuVDelta * 1) / 30; }
+#endif // TEMP_uV_LOOKUP_S99

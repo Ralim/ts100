@@ -14,6 +14,7 @@ void              I2CBB2::init() {
   // Set GPIO's to output open drain
   GPIO_InitTypeDef GPIO_InitStruct;
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
   GPIO_InitStruct.Pin   = SDA2_Pin;
   GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_OD;

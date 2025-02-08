@@ -126,77 +126,7 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
   }
 }
 
-void unstick_I2C() {
-#ifdef SCL_Pin
-  GPIO_InitTypeDef GPIO_InitStruct;
-  int              timeout     = 100;
-  int              timeout_cnt = 0;
-
-  // 1. Clear PE bit.
-  hi2c1.Instance->CR1 &= ~(0x0001);
-  /**I2C1 GPIO Configuration
-   PB6     ------> I2C1_SCL
-   PB7     ------> I2C1_SDA
-   */
-  //  2. Configure the SCL and SDA I/Os as General Purpose Output Open-Drain, High level (Write 1 to GPIOx_ODR).
-  GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_OD;
-  GPIO_InitStruct.Pull  = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-
-  GPIO_InitStruct.Pin = SCL_Pin;
-  HAL_GPIO_Init(SCL_GPIO_Port, &GPIO_InitStruct);
-  HAL_GPIO_WritePin(SCL_GPIO_Port, SCL_Pin, GPIO_PIN_SET);
-
-  GPIO_InitStruct.Pin = SDA_Pin;
-  HAL_GPIO_Init(SDA_GPIO_Port, &GPIO_InitStruct);
-  HAL_GPIO_WritePin(SDA_GPIO_Port, SDA_Pin, GPIO_PIN_SET);
-
-  while (GPIO_PIN_SET != HAL_GPIO_ReadPin(SDA_GPIO_Port, SDA_Pin)) {
-    // Move clock to release I2C
-    HAL_GPIO_WritePin(SCL_GPIO_Port, SCL_Pin, GPIO_PIN_RESET);
-    asm("nop");
-    asm("nop");
-    asm("nop");
-    asm("nop");
-    HAL_GPIO_WritePin(SCL_GPIO_Port, SCL_Pin, GPIO_PIN_SET);
-
-    timeout_cnt++;
-    if (timeout_cnt > timeout) {
-      return;
-    }
-  }
-
-  // 12. Configure the SCL and SDA I/Os as Alternate function Open-Drain.
-  GPIO_InitStruct.Mode  = GPIO_MODE_AF_OD;
-  GPIO_InitStruct.Pull  = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-
-  GPIO_InitStruct.Pin = SCL_Pin;
-  HAL_GPIO_Init(SCL_GPIO_Port, &GPIO_InitStruct);
-
-  GPIO_InitStruct.Pin = SDA_Pin;
-  HAL_GPIO_Init(SDA_GPIO_Port, &GPIO_InitStruct);
-
-  HAL_GPIO_WritePin(SCL_GPIO_Port, SCL_Pin, GPIO_PIN_SET);
-  HAL_GPIO_WritePin(SDA_GPIO_Port, SDA_Pin, GPIO_PIN_SET);
-
-  // 13. Set SWRST bit in I2Cx_CR1 register.
-  hi2c1.Instance->CR1 |= 0x8000;
-
-  asm("nop");
-
-  // 14. Clear SWRST bit in I2Cx_CR1 register.
-  hi2c1.Instance->CR1 &= ~0x8000;
-
-  asm("nop");
-
-  // 15. Enable the I2C peripheral by setting the PE bit in I2Cx_CR1 register
-  hi2c1.Instance->CR1 |= 0x0001;
-
-  // Call initialization function.
-  HAL_I2C_Init(&hi2c1);
-#endif
-}
+void unstick_I2C() {}
 
 uint8_t getButtonA() { return HAL_GPIO_ReadPin(KEY_A_GPIO_Port, KEY_A_Pin) == GPIO_PIN_RESET ? 1 : 0; }
 uint8_t getButtonB() { return HAL_GPIO_ReadPin(KEY_B_GPIO_Port, KEY_B_Pin) == GPIO_PIN_RESET ? 1 : 0; }

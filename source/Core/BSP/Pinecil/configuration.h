@@ -149,6 +149,7 @@
 #define POW_PD             1
 #define USB_PD_EPR_WATTAGE 0 /*No EPR (Yet?) */
 #define POW_PD_EXT         0
+#define USB_PD_TIMEOUT    20  // Default Timeout for USB-PD Protocol negotiation in x100ms
 #define POW_QC             1
 #define POW_DC             1
 #define POW_QC_20V         1

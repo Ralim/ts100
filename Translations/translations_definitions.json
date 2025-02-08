@@ -18,7 +18,7 @@
     },
     {
       "id": "NoPowerDeliveryMessage",
-      "include": ["POW_PD"],
+      "include": ["POW_PD", "POW_PD_EXT"],
       "description": "The IC required for USB-PD could not be communicated with. This is an error warning that USB-PD WILL NOT FUNCTION. Generally indicative of either a hardware or software issues."
     },
     {
@@ -264,14 +264,14 @@
       "id": "PDNegTimeout",
       "maxLen": 8,
       "maxLen2": 15,
-      "include": ["POW_PD"],
+      "include": ["POW_PD", "POW_PD_EXT"],
       "description": "How long until firmware stops trying to negotiate for USB-PD and tries QC instead. Longer times may help dodgy / old PD adapters, faster times move onto PD quickly. Units of 100ms. Recommended to keep small values."
     },
     {
       "id": "USBPDMode",
       "maxLen": 7,
       "maxLen2": 15,
-      "include": ["POW_PD"],
+      "include": ["POW_PD", "POW_PD_EXT"],
       "description": "No Dynamic disables EPR & PPS, Safe mode does not use padding resistance"
     },
     {
