@@ -57,16 +57,16 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc) {
      PB1     ------> ADC2_IN9
      */
     GPIO_InitStruct.Pin  = TIP_TEMP_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
     HAL_GPIO_Init(TIP_TEMP_GPIO_Port, &GPIO_InitStruct);
     GPIO_InitStruct.Pin  = TMP36_INPUT_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
     HAL_GPIO_Init(TMP36_INPUT_GPIO_Port, &GPIO_InitStruct);
     GPIO_InitStruct.Pin  = VIN_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
     HAL_GPIO_Init(VIN_GPIO_Port, &GPIO_InitStruct);
     GPIO_InitStruct.Pin  = PLATE_SENSOR_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
     HAL_GPIO_Init(PLATE_SENSOR_GPIO_Port, &GPIO_InitStruct);
 
     /* ADC2 interrupt Init */

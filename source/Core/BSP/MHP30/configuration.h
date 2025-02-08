@@ -165,6 +165,14 @@
 #define ACCEL_EXITS_ON_MOVEMENT
 #define NEEDS_VBUS_PROBE 0
 
+#define CANT_DIRECT_READ_SETTINGS     // We cant memcpy settings due to flash cache
+#define TIP_CONTROL_PID               // We use PID rather than integrator
+#define TIP_PID_KP                22  //40  // Reasonable compromise for most tips so far
+#define TIP_PID_KI                300 //6   // About as high for stability across tips
+#define TIP_PID_KD                600 //200 // Helps dampen smaller tips; ~= nothing for larger tips
+#define FILTER_DISPLAYED_TIP_TEMP 8   // Filtering for GUI display
+
+
 #define HARDWARE_MAX_WATTAGE_X10 650
 #define TIP_THERMAL_MASS         65 // TODO, needs refinement
 #define TIP_RESISTANCE           60 // x10 ohms, ~6 typical
