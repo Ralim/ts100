@@ -635,6 +635,9 @@ static void displayLockingMode(void) {
   case lockingMode_t::FULL:
     OLED::print(translatedString(Tr->SettingLockFullChar), FontStyle::LARGE);
     break;
+  case lockingMode_t::TEMP:
+    OLED::print(translatedString(Tr->SettingLockTempChar), FontStyle::LARGE);
+    break;
   default:
     OLED::drawUnavailableIcon();
     break;

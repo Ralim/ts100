@@ -35,7 +35,7 @@ OperatingMode handleSolderingButtons(const ButtonState buttons, guiContext *cxt)
       cxt->scratch_state.state1 = 3;
       break;
     case BUTTON_F_LONG:
-      if (getSettingValue(SettingsOptions::BoostTemp) && (getSettingValue(SettingsOptions::LockingMode) == lockingMode_t::BOOST)) {
+      if (getSettingValue(SettingsOptions::BoostTemp) && (getSettingValue(SettingsOptions::LockingMode) >= lockingMode_t::BOOST ||)) {
         cxt->scratch_state.state2 = 1;
         break;
       }
@@ -65,6 +65,9 @@ OperatingMode handleSolderingButtons(const ButtonState buttons, guiContext *cxt)
     }
     break;
   case BUTTON_F_SHORT:
+    if (getSettingValue(SettingsOptions::LockingMode) == lockingMode_t::TEMP) {
+      break;
+    }
   case BUTTON_B_SHORT:
     cxt->transitionMode = TransitionAnimation::Left;
     return OperatingMode::TemperatureAdjust;

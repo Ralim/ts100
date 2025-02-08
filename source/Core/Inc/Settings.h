@@ -114,9 +114,10 @@ typedef enum {
 } usbpdMode_t;
 
 typedef enum {
-  DISABLED = 0, // Locking buttons is disabled
-  BOOST    = 1, // Locking buttons for Boost mode only
-  FULL     = 2, // Locking buttons for Boost mode AND for Soldering mode
+  DISABLED = 0, // All buttons are unlocked
+  BOOST    = 1, // All buttons are locked except boost
+  FULL     = 2, // All buttons are locked
+  TEMP     = 3, // All buttons are locked except -/B to change the temperature
 } lockingMode_t;
 
 /* Selection of the soldering tip

@@ -165,6 +165,12 @@
       "len": 1,
       "default": "F",
       "description": "Shown when the locking mode is set to lock all buttons."
+    },
+    {
+      "id": "SettingLockTempChar",
+      "len": 1,
+      "default": "T",
+      "description": "Shown when the locking mode is set to lock all buttons except for -/B to change the temperature."
     }
   ],
   "menuGroups": [
