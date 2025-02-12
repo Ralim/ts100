@@ -27,7 +27,7 @@ enum ButtonState {
 };
 
 // Returns what buttons are pressed (if any)
-ButtonState getButtonState();
+ButtonState getButtonState(bool revert=0);
 // Helpers
 void waitForButtonPressOrTimeout(TickType_t timeout);
 void waitForButtonPress();

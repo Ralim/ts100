@@ -54,10 +54,6 @@ OperatingMode gui_solderingTempAdjust(const ButtonState buttonIn, guiContext *cx
   if ((PRESS_ACCEL_INTERVAL_MAX - (*autoRepeatAcceleration)) < PRESS_ACCEL_INTERVAL_MIN) {
     (*autoRepeatAcceleration) = PRESS_ACCEL_INTERVAL_MAX - PRESS_ACCEL_INTERVAL_MIN;
   }
-  // If buttons are flipped; flip the delta
-  if (getSettingValue(SettingsOptions::ReverseButtonTempChangeEnabled)) {
-    delta = -delta;
-  }
   if (delta != 0) {
     // constrain between the set temp limits, i.e. 10-450 C
     int16_t newTemp = getSettingValue(SettingsOptions::SolderingTemp);
