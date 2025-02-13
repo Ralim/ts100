@@ -40,9 +40,9 @@ I.e.:
 
 **Additional scroll-able items appear in this order**:
 
-### Date
+### Timestamp
 
-- This is a date of firmware compilation and it has the following format: `DD-MM-YY` (i.e., `01-07-23` means it has been built in July, 1st, 2023)
+- This is a timestamp of firmware compilation and it has the following format: `YYYYMMDD HHMMSS` (i.e., `20230701 213456` means it has been built in July, 1st, 2023 at 9:34:56 pm)
 
 ### ID
 
