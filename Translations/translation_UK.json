@@ -34,7 +34,7 @@
       "message": "!Жало закорочено!"
     },
     "SettingsCalibrationWarning": {
-      "message": "Під час наступного завантаження переконайтеся, що жало і ручка мають кімнатну температуру!"
+      "message": "Під час наступного завантаження переконайтеся, що жало і ручка мають кімнатну t°!"
     },
     "CJCCalibrating": {
       "message": "калібрування\n"
@@ -97,7 +97,7 @@
       "description": ""
     },
     "UIMenu": {
-      "displayText": "Параметри\nінтерфейсу",
+      "displayText": "Параметри\nвзаємодії",
       "description": ""
     },
     "AdvancedMenu": {
@@ -153,23 +153,23 @@
     },
     "USBPDMode": {
       "displayText": "PD\nРежим",
-      "description": "Вмикає режими PPS & EPR."
+      "description": "Вмикає режими PPS & EPR"
     },
     "BoostTemperature": {
       "displayText": "Темпер.\nТурбо",
-      "description": "Температура \"Турбо\" режиму"
+      "description": "t° у \"Турбо\" режимі"
     },
     "AutoStart": {
       "displayText": "Гарячий\nстарт",
       "description": "Режим запуску паяльника (П=Пайка | С=Сон | К=Сон при кімн. темп.)"
     },
     "TempChangeShortStep": {
-      "displayText": "Зміна темп.\nкоротким",
-      "description": "Зміна температуру при короткому натисканні!"
+      "displayText": "Зміна t°\nкоротким",
+      "description": "Крок t° при короткому натисканні:"
     },
     "TempChangeLongStep": {
-      "displayText": "Зміна темп.\nдовгим",
-      "description": "Зміна температуру при довгому натисканні!"
+      "displayText": "Зміна t°\nдовгим",
+      "description": "Крок t° при довгому натисканні:"
     },
     "LockingMode": {
       "displayText": "Дозволити\nблок. кнопок",
@@ -180,8 +180,8 @@
       "description": "Кількість етапів в режимі профілів"
     },
     "ProfilePreheatTemp": {
-      "displayText": "Температура\nПоп.Розігріву",
-      "description": "Попередньо розігріти до цієї температури на початку режимку профілів"
+      "displayText": "t° Поперед.\nРозігріву",
+      "description": "Попередньо розігріти до цієї t° на початку режимку профілів"
     },
     "ProfilePreheatSpeed": {
       "displayText": "Швидкість\nПоп.Розігріву",
@@ -189,7 +189,7 @@
     },
     "ProfilePhase1Temp": {
       "displayText": "Етап 1\nТемпература",
-      "description": "Температура на кінці цього етапу"
+      "description": "t° на кінці цього етапу"
     },
     "ProfilePhase1Duration": {
       "displayText": "Етап 1\nТривалість",
@@ -233,11 +233,11 @@
     },
     "MotionSensitivity": {
       "displayText": "Чутливість\nдатчику руху",
-      "description": "Акселерометр (1=мін. чутливості | ... | 9=макс. чутливість)"
+      "description": "Акселерометр (1=мін. чутливість | ... | 9=макс. чутливість)"
     },
     "SleepTemperature": {
       "displayText": "Темпер.\nсну",
-      "description": "Температура режиму сну (C° | F°)"
+      "description": "t° у режимі сну"
     },
     "SleepTimeout": {
       "displayText": "Тайм-аут\nсну",
@@ -256,8 +256,8 @@
       "description": "Проміжок часу до \"часу сну\" за умови спрацювання датчику Холла"
     },
     "TemperatureUnit": {
-      "displayText": "Формат темпе-\nратури(C°/F°)",
-      "description": "Одиниця виміру температури (C=Цельсій | F=Фаренгейт)"
+      "displayText": "Формат темпе-\nратури(°C/°F)",
+      "description": "Одиниця виміру t° (C=Цельсій | F=Фаренгейт)"
     },
     "DisplayRotation": {
       "displayText": "Обертання\nекрану",
@@ -265,15 +265,19 @@
     },
     "CooldownBlink": {
       "displayText": "Показ t° при\nохолодженні",
-      "description": "Показувати температуру на екрані охолодження, поки жало залишається гарячим, при цьому екран мерехтить"
+      "description": "Показувати t° на екрані охолодження, доки жало залишається гарячим, при цьому екран мерехтить"
     },
     "ScrollingSpeed": {
       "displayText": "Швидкість\nтексту",
       "description": "Швидкість прокрутки тексту (Н=Низькa | М=Максимальна)"
     },
     "ReverseButtonTempChange": {
-      "displayText": "Інвертувати\nкнопки +-?",
-      "description": "Інвертувати кнопки зміни температури."
+      "displayText": "Обернути\nкнопки +/-?",
+      "description": "Обернути кнопки зміни t°"
+    },
+    "ReverseButtonMenu": {
+      "displayText": "Обернути\nкнопки A/B?",
+      "description": "Обернути кнопки навігації"
     },
     "AnimSpeed": {
       "displayText": "Швидкість\nанімації",
@@ -288,20 +292,20 @@
       "description": "Налаштування контрасту/яскравості OLED екрану"
     },
     "ColourInversion": {
-      "displayText": "Інверт\nекрану",
-      "description": "Інвертувати кольори на OLED екрані"
+      "displayText": "Обернути\nкольори",
+      "description": "Обернути кольори на OLED екрані"
     },
     "LOGOTime": {
-      "displayText": "Тривалість\nлоготипу при запуску",
-      "description": "Поточна тривалість показу лого при запуску (сек)"
+      "displayText": "Тривалість\nекр лого",
+      "description": "Поточна тривалість лого при запуску (сек)"
     },
     "AdvancedIdle": {
-      "displayText": "Детальний ре-\nжим очікуван.",
-      "description": "Показувати детальну інформацію маленьким шрифтом на домашньому екрані"
+      "displayText": "Детальний\nрежим сну",
+      "description": "Показувати детальну інформацію дрібним шрифтом на домашньому екрані"
     },
     "AdvancedSoldering": {
       "displayText": "Детальний\nрежим пайки",
-      "description": "Показувати детальну інформацію при пайці."
+      "description": "Показувати детальну інформацію при пайці"
     },
     "BluetoothLE": {
       "displayText": "Bluetooth\n",
@@ -309,19 +313,19 @@
     },
     "PowerLimit": {
       "displayText": "Макс.\nпотуж.",
-      "description": "Макс. потужність, яку може використовувати паяльник (Ватт)"
+      "description": "Макс. потужність живлення паяльника (Ватт)"
     },
     "CalibrateCJC": {
-      "displayText": "Калібрувати КХС\nпри наступному запуску",
-      "description": "При наступному запуску буде відкалібровано Компенсацію Холодного Спаю жала (непотрібне при різниці температур < 5°C)"
+      "displayText": "Калібрація КХС\n",
+      "description": "При наступному запуску буде відкалібровано Компенсацію Холодного Спаю жала (непотрібне при Δt° < 5°C)"
     },
     "VoltageCalibration": {
       "displayText": "Калібрування\nнапруги",
-      "description": "Калібрування напруги входу. Налаштувати кнопками, натиснути і утримати щоб завершити."
+      "description": "Калібрування напруги входу. Налаштувати кнопками, натиснути і утримати щоб завершити"
     },
     "PowerPulsePower": {
       "displayText": "Пульс.\nНавантаж.",
-      "description": "Деякі PowerBank-и з часом вимк. живлення, якщо пристрій споживає дуже мало енергії)"
+      "description": "Деякі PowerBank-и з часом вимк. живлення, якщо пристрій споживає замало енергії)"
     },
     "PowerPulseWait": {
       "displayText": "Час між імп.\nнапруги",
@@ -333,14 +337,14 @@
     },
     "SettingsReset": {
       "displayText": "Скинути всі\nналаштування?",
-      "description": "Скидання всіх параметрів до стандартних значень."
+      "description": "Скидання всіх параметрів до стандартних значень"
     },
     "LanguageSwitch": {
       "displayText": "Мова:\n UK  Українська",
       "description": ""
     },
     "SolderingTipType": {
-      "displayText": "Тип Жала",
+      "displayText": "Тип\nЖала",
       "description": "Оберіть відповідний тип жала"
     }
   }

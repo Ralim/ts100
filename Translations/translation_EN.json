@@ -272,8 +272,12 @@
       "description": "Scrolling speed of info text (S=slow | F=fast)"
     },
     "ReverseButtonTempChange": {
-      "displayText": "Swap\n+ - keys",
+      "displayText": "Swap\n+/- keys",
       "description": "Reverse assignment of buttons for temperature adjustment"
+    },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
     },
     "AnimSpeed": {
       "displayText": "Anim.\nspeed",

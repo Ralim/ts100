@@ -275,6 +275,10 @@
       "displayText": "Skift\n+ - tasterne",
       "description": "Skift tildeling af knapper til temperaturjustering"
     },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
+    },
     "AnimSpeed": {
       "displayText": "Anim.\nHastighed",
       "description": "Hastigheden for ikonanimationer i menuen (S=langsomt | M=medium | F=hurtigt)"

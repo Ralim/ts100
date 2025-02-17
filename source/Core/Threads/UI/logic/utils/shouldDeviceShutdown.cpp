@@ -17,7 +17,11 @@ bool shouldShutdown(void) {
       }
     }
   }
+#ifdef OPT_FULL_BUTTON_REVERSE
+  if (getButtonState(getSettingValue(SettingsOptions::ReverseButtonMenu) == BUTTON_B_LONG) { // allow also if back button is pressed long
+#else
   if (getButtonState() == BUTTON_B_LONG) { // allow also if back button is pressed long
+#endif
     return true;
   }
   return false;

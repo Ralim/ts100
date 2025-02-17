@@ -275,6 +275,10 @@
       "displayText": "(+) va (-) tugmalarni\nalmashtirish",
       "description": "Harorat o'zgarishi uchun tugmachalarni vazifasini almashish"
     },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
+    },
     "AnimSpeed": {
       "displayText": "Anim.\ntezligi",
       "description": "Menyudagi ikonka animatsiyalari tezligini sozlash (S=sekin | O=o'rtacha | T=tez)"

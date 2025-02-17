@@ -272,8 +272,12 @@
       "description": "Viteză derulare text cu informatii la (S=lent | F=rapid)"
     },
     "ReverseButtonTempChange": {
-      "displayText": "Inversare\n+ - butoane",
+      "displayText": "Inversare\n+/- butoane",
       "description": "Inversarea butoanelor de reglare a temperaturii"
+    },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
     },
     "AnimSpeed": {
       "displayText": "Animaţii\nviteză",

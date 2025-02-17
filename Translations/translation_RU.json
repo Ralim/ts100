@@ -275,6 +275,10 @@
       "displayText": "Поменять\nкнопки +/-",
       "description": "Поменять кнопки изменения температуры"
     },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
+    },
     "AnimSpeed": {
       "displayText": "Скорость\nанимации",
       "description": "Скорость анимации иконок в главном меню (М=Медленная| С=Средняя | Б=Быстрая)"

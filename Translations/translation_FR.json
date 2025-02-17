@@ -272,8 +272,12 @@
       "description": "Vitesse de défilement du texte (R=rapide | L=lent)"
     },
     "ReverseButtonTempChange": {
-      "displayText": "Inverser les\ntouches + -",
+      "displayText": "Inverser les\ntouches +/-",
       "description": "Inverser les boutons d'ajustement de température"
+    },
+    "ReverseButtonMenu": {
+      "displayText": "Inverser les\ntouches A/B",
+      "description": "Inverser les boutons de navigation du menu"
     },
     "AnimSpeed": {
       "displayText": "Vitesse\nanim. icônes",

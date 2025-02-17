@@ -272,8 +272,12 @@
       "description": "Хуткасць гартання тэксту (М=марудна | Х=хутка)"
     },
     "ReverseButtonTempChange": {
-      "displayText": "Інвертаваць\nкнопкі",
+      "displayText": "Інвертаваць\nкнопкі +/-",
       "description": "Інвертаваць кнопкі вымярэння тэмпературы"
+    },
+    "ReverseButtonMenu": {
+      "displayText": "Інвертаваць\nкнопкі A/B",
+      "description": "Інвертаваць кнопкі навігацыі ў меню"
     },
     "AnimSpeed": {
       "displayText": "Хуткасць\nанімацыі",

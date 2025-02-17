@@ -275,6 +275,10 @@
       "displayText": "Suunnanvaihto\n+ - näppäimille",
       "description": "Lämpötilapainikkeiden suunnan vaihtaminen"
     },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
+    },
     "AnimSpeed": {
       "displayText": "Animaation\nnopeus",
       "description": "Animaatioiden nopeus valikossa (A=alhainen | K=keskiverto | S=suuri)"

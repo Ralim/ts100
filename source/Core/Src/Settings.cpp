@@ -54,7 +54,7 @@ typedef struct {
 } SettingConstants;
 
 static const SettingConstants settingsConstants[(int)SettingsOptions::SettingsOptionsLength] = {
-  //{                   min,                               max,         increment,                      default}
+  //                    MIN,                                                                   MAX,         INCREMENT,                      DEFAULT
     {            MIN_TEMP_C,                                                            MAX_TEMP_F,                 5,               SOLDERING_TEMP}, // SolderingTemp
     {            MIN_TEMP_C,                                                            MAX_TEMP_F,                 5,                          150}, // SleepTemp
     {                     0,                                                                    15,                 1,                   SLEEP_TIME}, // SleepTime
@@ -110,6 +110,8 @@ static const SettingConstants settingsConstants[(int)SettingsOptions::SettingsOp
     {                     1,                                                                    10,                 1,                            2}, // ProfileCooldownSpeed
     {                     0,                                                                    12,                 1,                            0}, // HallEffectSleepTime
     {                     0, (tipType_t::TIP_TYPE_MAX - 1) > 0 ? (tipType_t::TIP_TYPE_MAX - 1) : 0,                 1,                            0}, // SolderingTipType
+    {                     0,                                                                     1,                 1,          REVERSE_BUTTON_MENU}, // ReverseButtonMenu
+  //                    MIN,                                                                   MAX,         INCREMENT,                      DEFAULT
 };
 static_assert((sizeof(settingsConstants) / sizeof(SettingConstants)) == ((int)SettingsOptions::SettingsOptionsLength));
 

@@ -275,6 +275,10 @@
       "displayText": "Swap\n+ - keys",
       "description": "Reverse assignment of buttons for temperature adjustment"
     },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
+    },
     "AnimSpeed": {
       "displayText": "Anim.\nspeed",
       "description": "Pace of icon animations in menu (S=slow | M=medium | B=fast)"

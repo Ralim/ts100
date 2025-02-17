@@ -474,6 +474,12 @@
       "description": "Swaps which button increments and decrements on temperature change screens."
     },
     {
+      "id": "ReverseButtonMenu",
+      "maxLen": 6,
+      "maxLen2": 15,
+      "description": "Swaps which buttons are used as Enter/Change and which as Scroll/Back in the settings menu."
+    },
+    {
       "id": "AnimSpeed",
       "maxLen": 6,
       "maxLen2": 13,

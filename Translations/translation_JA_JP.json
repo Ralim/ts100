@@ -275,6 +275,10 @@
       "displayText": "キー入れ替え",
       "description": "温度設定時に+ボタンと-ボタンを入れ替える"
     },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
+    },
     "AnimSpeed": {
       "displayText": "動画の速度",
       "description": "メニューアイコンのアニメーションの速さ <遅=低速 | 中=中速 | 速=高速>"

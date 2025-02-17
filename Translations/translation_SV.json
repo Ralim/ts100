@@ -275,6 +275,10 @@
       "displayText": "Omvända\n+- knappar",
       "description": "Omvänd ordning för temperaturjustering via plus/minus knapparna"
     },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
+    },
     "AnimSpeed": {
       "displayText": "Anim.-\nhastighet",
       "description": "Animationshastighet för ikoner i menyer (L=långsam | M=medel | S=snabb)"

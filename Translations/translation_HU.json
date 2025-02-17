@@ -275,6 +275,10 @@
       "displayText": "+/- gomb\nmegfordítása",
       "description": "Forrasztó hegy hőmérsékletállító gombok felcserélése"
     },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
+    },
     "AnimSpeed": {
       "displayText": "Animáció\nsebessége",
       "description": "Menüikonok animációjának sebessége (L=lassú | K=közepes | Gy=gyors)"

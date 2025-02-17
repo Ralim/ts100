@@ -53,15 +53,18 @@
 
 /**
  * OLED Orientation
- *
  */
 #define ORIENTATION_MODE           2 // 0: Right 1:Left 2:Automatic - Default Automatic
 #define MAX_ORIENTATION_MODE       2 // Up to auto
-#define REVERSE_BUTTON_TEMP_CHANGE 0 // 0:Default 1:Reverse - Reverse the plus and minus button assigment for temperature change
+
+/**
+ * Buttons handling
+ */
+#define REVERSE_BUTTON_TEMP_CHANGE 0 // 0:Default 1:Reverse - Reverse the plus and minus button assignment for temperature change
+#define REVERSE_BUTTON_MENU        0 // 0:Default 1:Reverse - Reverse the A and B button assignment for Settings menu only
 
 /**
  * OLED Brightness
- *
  */
 #define MIN_BRIGHTNESS     1   // Min OLED brightness selectable
 #define MAX_BRIGHTNESS     101 // Max OLED brightness selectable

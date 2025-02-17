@@ -272,8 +272,12 @@
       "description": "Velocidade a que o texto de ajuda é apresentado"
     },
     "ReverseButtonTempChange": {
-      "displayText": "Trocar\nbotões + -",
+      "displayText": "Trocar\nbotões +/-",
       "description": "Inverte o funcionamento dos botões de ajuste da temperatura"
+    },
+    "ReverseButtonMenu": {
+      "displayText": "Swap\nA/B keys",
+      "description": "Reverse assignment of buttons for Settings menu"
     },
     "AnimSpeed": {
       "displayText": "Velocidade\nde animação",
